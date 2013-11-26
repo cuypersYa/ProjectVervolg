@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MessagingToolkit.QRCode.Codec;
+using MessagingToolkit.QRCode.Codec.Data;
+
 
 public partial class InfoEvent : System.Web.UI.Page
 {
@@ -24,7 +31,7 @@ public partial class InfoEvent : System.Web.UI.Page
         lblEventid.Text = Convert.ToString(eventId);
         BLLAanwezig SelectAanwezig = new BLLAanwezig();
         BLLUser SelectUser = new BLLUser();
-        IList<int> Events = SelectAanwezig.SelectAllAanwezige(eventId);
+        IList<int> Events = SelectAanwezig.SelectEvent(eventId);
         var Aanwezigen = new List<string>();
         
 
@@ -48,20 +55,30 @@ public partial class InfoEvent : System.Web.UI.Page
         for (int i = 0; i < Sprekers.Count(); i++)
         {
             Spreker Spreker = Sprekers[i];
-            LijstSprekers.Add(Spreker.naam);
+            LijstSprekers.Add(Spreker.naam + " " + Spreker.begintijd + " " + Spreker.eindtijd);
         }
-        for (int i = 0; i < Sprekers.Count(); i++)
-        {
-            Spreker Spreker = Sprekers[i];
-            LijstSprekers.Add(Spreker.begintijd + " " + Spreker.eindtijd);
-        }
-        
+
         rptSprekers.DataSource = LijstSprekers;
         rptSprekers.DataBind();
 
-        rptTijd.DataSource = LijstTijd;
-        rptTijd.DataBind();
+        BLLAanwezig BllAanwezige = new BLLAanwezig();
+        List<Aanwezig> LijstAanwezigen = new List<Aanwezig>();
+        LijstAanwezigen = BllAanwezige.SelectAlleAanwezige(eventId);
+        List<System.Drawing.Image> LijstQR = new List<System.Drawing.Image>();
 
+
+        for (int i = 0; i < LijstAanwezigen.Count(); i++)
+        {
+            Aanwezig Aanwezigenqr = LijstAanwezigen[i];
+            QRCodeEncoder encoder = new QRCodeEncoder();
+            Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
+            img.Save("C:\\Users\\BJAAARN\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+            imgQrCode.ImageUrl = "img.jpg";
+
+            
+        }
+        
+        
 
     }
 }
