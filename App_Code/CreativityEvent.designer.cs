@@ -873,9 +873,11 @@ public partial class Spreker : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _naam;
 	
-	private string _tijd;
+	private string _begintijd;
 	
 	private int _event_id;
+	
+	private string _eindtijd;
 	
 	private EntityRef<Event> _Event;
 	
@@ -887,10 +889,12 @@ public partial class Spreker : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnIdChanged();
     partial void OnnaamChanging(string value);
     partial void OnnaamChanged();
-    partial void OntijdChanging(string value);
-    partial void OntijdChanged();
+    partial void OnbegintijdChanging(string value);
+    partial void OnbegintijdChanged();
     partial void Onevent_idChanging(int value);
     partial void Onevent_idChanged();
+    partial void OneindtijdChanging(string value);
+    partial void OneindtijdChanged();
     #endregion
 	
 	public Spreker()
@@ -939,22 +943,22 @@ public partial class Spreker : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tijd", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-	public string tijd
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_begintijd", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+	public string begintijd
 	{
 		get
 		{
-			return this._tijd;
+			return this._begintijd;
 		}
 		set
 		{
-			if ((this._tijd != value))
+			if ((this._begintijd != value))
 			{
-				this.OntijdChanging(value);
+				this.OnbegintijdChanging(value);
 				this.SendPropertyChanging();
-				this._tijd = value;
-				this.SendPropertyChanged("tijd");
-				this.OntijdChanged();
+				this._begintijd = value;
+				this.SendPropertyChanged("begintijd");
+				this.OnbegintijdChanged();
 			}
 		}
 	}
@@ -979,6 +983,26 @@ public partial class Spreker : INotifyPropertyChanging, INotifyPropertyChanged
 				this._event_id = value;
 				this.SendPropertyChanged("event_id");
 				this.Onevent_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eindtijd", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+	public string eindtijd
+	{
+		get
+		{
+			return this._eindtijd;
+		}
+		set
+		{
+			if ((this._eindtijd != value))
+			{
+				this.OneindtijdChanging(value);
+				this.SendPropertyChanging();
+				this._eindtijd = value;
+				this.SendPropertyChanged("eindtijd");
+				this.OneindtijdChanged();
 			}
 		}
 	}

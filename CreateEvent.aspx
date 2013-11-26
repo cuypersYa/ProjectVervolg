@@ -13,23 +13,24 @@
             <asp:Label ID="lblFeedbackNaam" runat="server" ></asp:Label>
         <br />
         <asp:Label ID="lblInformatie" runat="server" AssociatedControlID="txtInformatie" Text="Informatie"></asp:Label>
-        <br />
-        <asp:TextBox id="txtInformatie" runat="server" TextMode="MultiLine" Height="300" Width="300"></asp:TextBox>
+        <asp:TextBox ID="txtInformatie" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvInformatie" runat="server" ControlToValidate="txtInformatie" ErrorMessage="Gelieve dit in te vullen"></asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lblSprekers" runat="server" AssociatedControlID="txtSpreker1" Text="Sprekers"></asp:Label>
         <br />
 
-        <asp:TextBox ID="txtSpreker1" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged"></asp:TextBox><asp:TextBox ID="txtTijd1" runat="server" TextMode="Time">00:00</asp:TextBox><br />
-     <asp:TextBox ID="txtSpreker2" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtTijd2" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><br />
-     <asp:TextBox ID="txtSpreker3" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtTijd3" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><br />
-     <asp:TextBox ID="txtSpreker4" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtTijd4" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><br />
-     <asp:TextBox ID="txtSpreker5" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtTijd5" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><br />
-     <asp:TextBox ID="txtSpreker6" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtTijd6" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><br />
-     <asp:TextBox ID="txtSpreker7" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtTijd7" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><br />
-     <asp:TextBox ID="txtSpreker8" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtTijd8" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><br />
-     <asp:TextBox ID="txtSpreker9" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtTijd9" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><br />
-     <asp:TextBox ID="txtSpreker10" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtTijd10" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><br />
+        <asp:TextBox ID="txtSpreker1" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged"></asp:TextBox><asp:TextBox ID="txtBeginTijd1" runat="server" TextMode="Time">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd1" runat="server" TextMode="Time">01:00</asp:TextBox><br />
+     <asp:TextBox ID="txtSpreker2" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd2" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd2" runat="server" TextMode="Time" Visible="False" >01:00</asp:TextBox><br />
+     <asp:TextBox ID="txtSpreker3" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd3" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd3" runat="server" TextMode="Time" Visible="False">01:00</asp:TextBox><br />
+     <asp:TextBox ID="txtSpreker4" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd4" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd4" runat="server" TextMode="Time" Visible="False">01:00</asp:TextBox><br />
+     <asp:TextBox ID="txtSpreker5" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd5" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd5" runat="server" TextMode="Time" Visible="False">01:00</asp:TextBox><br />
+     <asp:TextBox ID="txtSpreker6" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd6" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd6" runat="server" TextMode="Time" Visible="False">01:00</asp:TextBox><br />
+     <asp:TextBox ID="txtSpreker7" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd7" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd7" runat="server" TextMode="Time" Visible="False">01:00</asp:TextBox><br />
+     <asp:TextBox ID="txtSpreker8" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd8" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd8" runat="server" TextMode="Time" Visible="False">01:00</asp:TextBox><br />
+     <asp:TextBox ID="txtSpreker9" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd9" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd9" runat="server" TextMode="Time" Visible="False">01:00</asp:TextBox><br />
+     <asp:TextBox ID="txtSpreker10" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd10" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd10" runat="server" TextMode="Time" Visible="False">01:00</asp:TextBox>
+    <asp:Label ID="lblFeedbackTijd" runat="server"></asp:Label>
+    <br />
     
 
         <br />

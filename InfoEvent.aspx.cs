@@ -19,7 +19,6 @@ public partial class InfoEvent : System.Web.UI.Page
         List<Event> ActiefEventLijst = BLLEvents.SelectEvent(eventId);
         Event ActiefEvent = ActiefEventLijst[0];
         lblEvent.Text = ActiefEvent.naam;
-        lblEventInformation.Text = ActiefEvent.informatie;
 
         lblEventid.Text = Convert.ToString(eventId);
         BLLAanwezig SelectAanwezig = new BLLAanwezig();
@@ -47,7 +46,7 @@ public partial class InfoEvent : System.Web.UI.Page
         for (int i = 0; i < Sprekers.Count(); i++)
         {
             Spreker Spreker = Sprekers[i];
-            LijstSprekers.Add(Spreker.naam + " " + Spreker.tijd);
+            LijstSprekers.Add(Spreker.naam + " " + Spreker.begintijd + " " +Spreker.eindtijd);
         }
         rptSprekers.DataSource = LijstSprekers;
         rptSprekers.DataBind();

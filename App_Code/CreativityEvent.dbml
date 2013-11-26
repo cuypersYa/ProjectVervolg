@@ -40,8 +40,9 @@
     <Type Name="Spreker">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="naam" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="tijd" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="begintijd" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="event_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="eindtijd" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="Event_Spreker" Member="Event" ThisKey="event_id" OtherKey="Id" Type="Event" IsForeignKey="true" />
     </Type>
   </Table>
