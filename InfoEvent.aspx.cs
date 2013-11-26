@@ -19,6 +19,7 @@ public partial class InfoEvent : System.Web.UI.Page
         List<Event> ActiefEventLijst = BLLEvents.SelectEvent(eventId);
         Event ActiefEvent = ActiefEventLijst[0];
         lblEvent.Text = ActiefEvent.naam;
+        lblEventInformation.Text = ActiefEvent.informatie;
 
         lblEventid.Text = Convert.ToString(eventId);
         BLLAanwezig SelectAanwezig = new BLLAanwezig();

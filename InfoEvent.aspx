@@ -9,7 +9,8 @@
         <asp:Label ID="lblgebruiker" runat="server" Text="Label"></asp:Label>
         <br />
         <asp:Label ID="lblEventid" runat="server" Text="Label"></asp:Label>
-    
+        <br />
+        <asp:TextBox ID="lblEventInformation" runat="server" ReadOnly="True" Height="300" Width="300" Wrap="True" TextMode="MultiLine"></asp:TextBox>
         <br />
         <br />
         <asp:Repeater ID="rptAanwezig" runat="server" DataSourceID="">

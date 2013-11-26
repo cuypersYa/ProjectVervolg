@@ -14,7 +14,7 @@
         <br />
         <asp:Label ID="lblInformatie" runat="server" AssociatedControlID="txtInformatie" Text="Informatie"></asp:Label>
         <br />
-        <asp:TextBox id="txtInformatie" runat="server" TextMode="MultiLine"></asp:TextBox>
+        <asp:TextBox id="txtInformatie" runat="server" TextMode="MultiLine" Height="300" Width="300"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvInformatie" runat="server" ControlToValidate="txtInformatie" ErrorMessage="Gelieve dit in te vullen"></asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lblSprekers" runat="server" AssociatedControlID="txtSpreker1" Text="Sprekers"></asp:Label>
