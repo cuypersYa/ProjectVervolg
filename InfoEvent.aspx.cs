@@ -43,14 +43,24 @@ public partial class InfoEvent : System.Web.UI.Page
         BLLSpreker SelectSpreker = new BLLSpreker();
         List<Spreker> Sprekers = SelectSpreker.selectAll(eventId);
         List<string> LijstSprekers = new List<string>();
+        List<string> LijstTijd = new List<string>();
 
         for (int i = 0; i < Sprekers.Count(); i++)
         {
             Spreker Spreker = Sprekers[i];
-            LijstSprekers.Add(Spreker.naam + " " + Spreker.begintijd + " " +Spreker.eindtijd);
+            LijstSprekers.Add(Spreker.naam);
         }
+        for (int i = 0; i < Sprekers.Count(); i++)
+        {
+            Spreker Spreker = Sprekers[i];
+            LijstSprekers.Add(Spreker.begintijd + " " + Spreker.eindtijd);
+        }
+        
         rptSprekers.DataSource = LijstSprekers;
         rptSprekers.DataBind();
+
+        rptTijd.DataSource = LijstTijd;
+        rptTijd.DataBind();
 
 
     }

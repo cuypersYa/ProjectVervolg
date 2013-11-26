@@ -51,6 +51,24 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
+    <asp:Repeater ID="rptTijd" runat="server" DataSourceID="">
+            <HeaderTemplate>
+                <table class="table table-striped">
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <%# Container.DataItem %>
+                    </td>
+                    
+                </tr>
+            </ItemTemplate>
+
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
+        </asp:Repeater>
     
 
     </asp:Content>
