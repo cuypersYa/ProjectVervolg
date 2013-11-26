@@ -13,7 +13,8 @@
             <asp:Label ID="lblFeedbackNaam" runat="server" ></asp:Label>
         <br />
         <asp:Label ID="lblInformatie" runat="server" AssociatedControlID="txtInformatie" Text="Informatie"></asp:Label>
-        <asp:TextBox ID="txtInformatie" runat="server"></asp:TextBox>
+        <br />
+        <asp:TextBox id="txtInformatie" runat="server" TextMode="MultiLine"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvInformatie" runat="server" ControlToValidate="txtInformatie" ErrorMessage="Gelieve dit in te vullen"></asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lblSprekers" runat="server" AssociatedControlID="txtSpreker1" Text="Sprekers"></asp:Label>
