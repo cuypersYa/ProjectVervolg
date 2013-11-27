@@ -49,4 +49,9 @@
        
         
        
+    <asp:Button ID="btnUitloggen" runat="server" CssClass="btn" OnClick="btnUitloggen_Click" Text="Uitloggen" />
+       
+       
+        
+       
 </asp:Content>
