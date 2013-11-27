@@ -5,6 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderId="ContentHeadCenter" runat="server">
     <div class="jumbotron">
+        <br />
       <div class="container">
         <asp:Label ID="lblGebruikersnaam" runat="server" AssociatedControlID="txtGebruikersnaam" Text="Gebruikersnaam"></asp:Label>
         <asp:TextBox ID="txtGebruikersnaam" runat="server"></asp:TextBox>
