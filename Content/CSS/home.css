@@ -8,3 +8,6 @@
     clear:both;
     margin-top:50px;
 }
+.textbox {
+resize: none;
+}
