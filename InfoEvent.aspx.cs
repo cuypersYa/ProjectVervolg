@@ -72,7 +72,7 @@ public partial class InfoEvent : System.Web.UI.Page
             Aanwezig Aanwezigenqr = LijstAanwezigen[i];
             QRCodeEncoder encoder = new QRCodeEncoder();
             Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
-            img.Save("C:\\Users\\BJAAARN\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+            img.Save("C:\\Users\\Veerle\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
             imgQrCode.ImageUrl = "img.jpg";
         }
        
