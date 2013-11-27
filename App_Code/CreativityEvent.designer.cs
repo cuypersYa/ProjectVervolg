@@ -29,9 +29,6 @@ public partial class CreativityEventDataContext : System.Data.Linq.DataContext
 	
   #region Extensibility Method Definitions
   partial void OnCreated();
-  partial void InsertAanwezig(Aanwezig instance);
-  partial void UpdateAanwezig(Aanwezig instance);
-  partial void DeleteAanwezig(Aanwezig instance);
   partial void InsertUser(User instance);
   partial void UpdateUser(User instance);
   partial void DeleteUser(User instance);
@@ -41,6 +38,9 @@ public partial class CreativityEventDataContext : System.Data.Linq.DataContext
   partial void InsertSpreker(Spreker instance);
   partial void UpdateSpreker(Spreker instance);
   partial void DeleteSpreker(Spreker instance);
+  partial void InsertAanwezig(Aanwezig instance);
+  partial void UpdateAanwezig(Aanwezig instance);
+  partial void DeleteAanwezig(Aanwezig instance);
   #endregion
 	
 	public CreativityEventDataContext() : 
@@ -73,14 +73,6 @@ public partial class CreativityEventDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
-	public System.Data.Linq.Table<Aanwezig> Aanwezigs
-	{
-		get
-		{
-			return this.GetTable<Aanwezig>();
-		}
-	}
-	
 	public System.Data.Linq.Table<User> Users
 	{
 		get
@@ -104,196 +96,12 @@ public partial class CreativityEventDataContext : System.Data.Linq.DataContext
 			return this.GetTable<Spreker>();
 		}
 	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Aanwezig")]
-public partial class Aanwezig : INotifyPropertyChanging, INotifyPropertyChanged
-{
 	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _Id;
-	
-	private int _EventId;
-	
-	private int _PersoonId;
-	
-	private EntityRef<User> _User;
-	
-	private EntityRef<Event> _Event;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnEventIdChanging(int value);
-    partial void OnEventIdChanged();
-    partial void OnPersoonIdChanging(int value);
-    partial void OnPersoonIdChanged();
-    #endregion
-	
-	public Aanwezig()
-	{
-		this._User = default(EntityRef<User>);
-		this._Event = default(EntityRef<Event>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int Id
+	public System.Data.Linq.Table<Aanwezig> Aanwezigs
 	{
 		get
 		{
-			return this._Id;
-		}
-		set
-		{
-			if ((this._Id != value))
-			{
-				this.OnIdChanging(value);
-				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventId", DbType="Int NOT NULL")]
-	public int EventId
-	{
-		get
-		{
-			return this._EventId;
-		}
-		set
-		{
-			if ((this._EventId != value))
-			{
-				if (this._Event.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnEventIdChanging(value);
-				this.SendPropertyChanging();
-				this._EventId = value;
-				this.SendPropertyChanged("EventId");
-				this.OnEventIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PersoonId", DbType="Int NOT NULL")]
-	public int PersoonId
-	{
-		get
-		{
-			return this._PersoonId;
-		}
-		set
-		{
-			if ((this._PersoonId != value))
-			{
-				if (this._User.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnPersoonIdChanging(value);
-				this.SendPropertyChanging();
-				this._PersoonId = value;
-				this.SendPropertyChanged("PersoonId");
-				this.OnPersoonIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Aanwezig", Storage="_User", ThisKey="PersoonId", OtherKey="Id", IsForeignKey=true)]
-	public User User
-	{
-		get
-		{
-			return this._User.Entity;
-		}
-		set
-		{
-			User previousValue = this._User.Entity;
-			if (((previousValue != value) 
-						|| (this._User.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._User.Entity = null;
-					previousValue.Aanwezigs.Remove(this);
-				}
-				this._User.Entity = value;
-				if ((value != null))
-				{
-					value.Aanwezigs.Add(this);
-					this._PersoonId = value.Id;
-				}
-				else
-				{
-					this._PersoonId = default(int);
-				}
-				this.SendPropertyChanged("User");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event_Aanwezig", Storage="_Event", ThisKey="EventId", OtherKey="Id", IsForeignKey=true)]
-	public Event Event
-	{
-		get
-		{
-			return this._Event.Entity;
-		}
-		set
-		{
-			Event previousValue = this._Event.Entity;
-			if (((previousValue != value) 
-						|| (this._Event.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Event.Entity = null;
-					previousValue.Aanwezigs.Remove(this);
-				}
-				this._Event.Entity = value;
-				if ((value != null))
-				{
-					value.Aanwezigs.Add(this);
-					this._EventId = value.Id;
-				}
-				else
-				{
-					this._EventId = default(int);
-				}
-				this.SendPropertyChanged("Event");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			return this.GetTable<Aanwezig>();
 		}
 	}
 }
@@ -318,9 +126,9 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _rol;
 	
-	private EntitySet<Aanwezig> _Aanwezigs;
-	
 	private EntitySet<Event> _Events;
+	
+	private EntitySet<Aanwezig> _Aanwezigs;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -344,8 +152,8 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public User()
 	{
-		this._Aanwezigs = new EntitySet<Aanwezig>(new Action<Aanwezig>(this.attach_Aanwezigs), new Action<Aanwezig>(this.detach_Aanwezigs));
 		this._Events = new EntitySet<Event>(new Action<Event>(this.attach_Events), new Action<Event>(this.detach_Events));
+		this._Aanwezigs = new EntitySet<Aanwezig>(new Action<Aanwezig>(this.attach_Aanwezigs), new Action<Aanwezig>(this.detach_Aanwezigs));
 		OnCreated();
 	}
 	
@@ -489,19 +297,6 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Aanwezig", Storage="_Aanwezigs", ThisKey="Id", OtherKey="PersoonId")]
-	public EntitySet<Aanwezig> Aanwezigs
-	{
-		get
-		{
-			return this._Aanwezigs;
-		}
-		set
-		{
-			this._Aanwezigs.Assign(value);
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Event", Storage="_Events", ThisKey="Id", OtherKey="eigenaar")]
 	public EntitySet<Event> Events
 	{
@@ -512,6 +307,19 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		set
 		{
 			this._Events.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Aanwezig", Storage="_Aanwezigs", ThisKey="Id", OtherKey="PersoonId")]
+	public EntitySet<Aanwezig> Aanwezigs
+	{
+		get
+		{
+			return this._Aanwezigs;
+		}
+		set
+		{
+			this._Aanwezigs.Assign(value);
 		}
 	}
 	
@@ -535,18 +343,6 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	private void attach_Aanwezigs(Aanwezig entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = this;
-	}
-	
-	private void detach_Aanwezigs(Aanwezig entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = null;
-	}
-	
 	private void attach_Events(Event entity)
 	{
 		this.SendPropertyChanging();
@@ -554,6 +350,18 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 	
 	private void detach_Events(Event entity)
+	{
+		this.SendPropertyChanging();
+		entity.User = null;
+	}
+	
+	private void attach_Aanwezigs(Aanwezig entity)
+	{
+		this.SendPropertyChanging();
+		entity.User = this;
+	}
+	
+	private void detach_Aanwezigs(Aanwezig entity)
 	{
 		this.SendPropertyChanging();
 		entity.User = null;
@@ -580,9 +388,9 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _sprekers;
 	
-	private EntitySet<Aanwezig> _Aanwezigs;
-	
 	private EntitySet<Spreker> _Sprekers1;
+	
+	private EntitySet<Aanwezig> _Aanwezigs;
 	
 	private EntityRef<User> _User;
 	
@@ -608,8 +416,8 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public Event()
 	{
-		this._Aanwezigs = new EntitySet<Aanwezig>(new Action<Aanwezig>(this.attach_Aanwezigs), new Action<Aanwezig>(this.detach_Aanwezigs));
 		this._Sprekers1 = new EntitySet<Spreker>(new Action<Spreker>(this.attach_Sprekers1), new Action<Spreker>(this.detach_Sprekers1));
+		this._Aanwezigs = new EntitySet<Aanwezig>(new Action<Aanwezig>(this.attach_Aanwezigs), new Action<Aanwezig>(this.detach_Aanwezigs));
 		this._User = default(EntityRef<User>);
 		OnCreated();
 	}
@@ -758,19 +566,6 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event_Aanwezig", Storage="_Aanwezigs", ThisKey="Id", OtherKey="EventId")]
-	public EntitySet<Aanwezig> Aanwezigs
-	{
-		get
-		{
-			return this._Aanwezigs;
-		}
-		set
-		{
-			this._Aanwezigs.Assign(value);
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event_Spreker", Storage="_Sprekers1", ThisKey="Id", OtherKey="event_id")]
 	public EntitySet<Spreker> Sprekers1
 	{
@@ -781,6 +576,19 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 		set
 		{
 			this._Sprekers1.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event_Aanwezig", Storage="_Aanwezigs", ThisKey="Id", OtherKey="EventId")]
+	public EntitySet<Aanwezig> Aanwezigs
+	{
+		get
+		{
+			return this._Aanwezigs;
+		}
+		set
+		{
+			this._Aanwezigs.Assign(value);
 		}
 	}
 	
@@ -838,18 +646,6 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	private void attach_Aanwezigs(Aanwezig entity)
-	{
-		this.SendPropertyChanging();
-		entity.Event = this;
-	}
-	
-	private void detach_Aanwezigs(Aanwezig entity)
-	{
-		this.SendPropertyChanging();
-		entity.Event = null;
-	}
-	
 	private void attach_Sprekers1(Spreker entity)
 	{
 		this.SendPropertyChanging();
@@ -857,6 +653,18 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 	
 	private void detach_Sprekers1(Spreker entity)
+	{
+		this.SendPropertyChanging();
+		entity.Event = null;
+	}
+	
+	private void attach_Aanwezigs(Aanwezig entity)
+	{
+		this.SendPropertyChanging();
+		entity.Event = this;
+	}
+	
+	private void detach_Aanwezigs(Aanwezig entity)
 	{
 		this.SendPropertyChanging();
 		entity.Event = null;
@@ -873,9 +681,11 @@ public partial class Spreker : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _naam;
 	
-	private string _tijd;
+	private string _begintijd;
 	
 	private int _event_id;
+	
+	private string _eindtijd;
 	
 	private EntityRef<Event> _Event;
 	
@@ -887,10 +697,12 @@ public partial class Spreker : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnIdChanged();
     partial void OnnaamChanging(string value);
     partial void OnnaamChanged();
-    partial void OntijdChanging(string value);
-    partial void OntijdChanged();
+    partial void OnbegintijdChanging(string value);
+    partial void OnbegintijdChanged();
     partial void Onevent_idChanging(int value);
     partial void Onevent_idChanged();
+    partial void OneindtijdChanging(string value);
+    partial void OneindtijdChanged();
     #endregion
 	
 	public Spreker()
@@ -939,22 +751,22 @@ public partial class Spreker : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tijd", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-	public string tijd
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_begintijd", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+	public string begintijd
 	{
 		get
 		{
-			return this._tijd;
+			return this._begintijd;
 		}
 		set
 		{
-			if ((this._tijd != value))
+			if ((this._begintijd != value))
 			{
-				this.OntijdChanging(value);
+				this.OnbegintijdChanging(value);
 				this.SendPropertyChanging();
-				this._tijd = value;
-				this.SendPropertyChanged("tijd");
-				this.OntijdChanged();
+				this._begintijd = value;
+				this.SendPropertyChanged("begintijd");
+				this.OnbegintijdChanged();
 			}
 		}
 	}
@@ -979,6 +791,26 @@ public partial class Spreker : INotifyPropertyChanging, INotifyPropertyChanged
 				this._event_id = value;
 				this.SendPropertyChanged("event_id");
 				this.Onevent_idChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eindtijd", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+	public string eindtijd
+	{
+		get
+		{
+			return this._eindtijd;
+		}
+		set
+		{
+			if ((this._eindtijd != value))
+			{
+				this.OneindtijdChanging(value);
+				this.SendPropertyChanging();
+				this._eindtijd = value;
+				this.SendPropertyChanged("eindtijd");
+				this.OneindtijdChanged();
 			}
 		}
 	}
@@ -1013,6 +845,222 @@ public partial class Spreker : INotifyPropertyChanging, INotifyPropertyChanged
 					this._event_id = default(int);
 				}
 				this.SendPropertyChanged("Event");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Aanwezig")]
+public partial class Aanwezig : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private int _EventId;
+	
+	private int _PersoonId;
+	
+	private string _qrcode;
+	
+	private EntityRef<Event> _Event;
+	
+	private EntityRef<User> _User;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnEventIdChanging(int value);
+    partial void OnEventIdChanged();
+    partial void OnPersoonIdChanging(int value);
+    partial void OnPersoonIdChanged();
+    partial void OnqrcodeChanging(string value);
+    partial void OnqrcodeChanged();
+    #endregion
+	
+	public Aanwezig()
+	{
+		this._Event = default(EntityRef<Event>);
+		this._User = default(EntityRef<User>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventId", DbType="Int NOT NULL")]
+	public int EventId
+	{
+		get
+		{
+			return this._EventId;
+		}
+		set
+		{
+			if ((this._EventId != value))
+			{
+				if (this._Event.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnEventIdChanging(value);
+				this.SendPropertyChanging();
+				this._EventId = value;
+				this.SendPropertyChanged("EventId");
+				this.OnEventIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PersoonId", DbType="Int NOT NULL")]
+	public int PersoonId
+	{
+		get
+		{
+			return this._PersoonId;
+		}
+		set
+		{
+			if ((this._PersoonId != value))
+			{
+				if (this._User.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnPersoonIdChanging(value);
+				this.SendPropertyChanging();
+				this._PersoonId = value;
+				this.SendPropertyChanged("PersoonId");
+				this.OnPersoonIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_qrcode", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+	public string qrcode
+	{
+		get
+		{
+			return this._qrcode;
+		}
+		set
+		{
+			if ((this._qrcode != value))
+			{
+				this.OnqrcodeChanging(value);
+				this.SendPropertyChanging();
+				this._qrcode = value;
+				this.SendPropertyChanged("qrcode");
+				this.OnqrcodeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event_Aanwezig", Storage="_Event", ThisKey="EventId", OtherKey="Id", IsForeignKey=true)]
+	public Event Event
+	{
+		get
+		{
+			return this._Event.Entity;
+		}
+		set
+		{
+			Event previousValue = this._Event.Entity;
+			if (((previousValue != value) 
+						|| (this._Event.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Event.Entity = null;
+					previousValue.Aanwezigs.Remove(this);
+				}
+				this._Event.Entity = value;
+				if ((value != null))
+				{
+					value.Aanwezigs.Add(this);
+					this._EventId = value.Id;
+				}
+				else
+				{
+					this._EventId = default(int);
+				}
+				this.SendPropertyChanged("Event");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Aanwezig", Storage="_User", ThisKey="PersoonId", OtherKey="Id", IsForeignKey=true)]
+	public User User
+	{
+		get
+		{
+			return this._User.Entity;
+		}
+		set
+		{
+			User previousValue = this._User.Entity;
+			if (((previousValue != value) 
+						|| (this._User.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._User.Entity = null;
+					previousValue.Aanwezigs.Remove(this);
+				}
+				this._User.Entity = value;
+				if ((value != null))
+				{
+					value.Aanwezigs.Add(this);
+					this._PersoonId = value.Id;
+				}
+				else
+				{
+					this._PersoonId = default(int);
+				}
+				this.SendPropertyChanged("User");
 			}
 		}
 	}

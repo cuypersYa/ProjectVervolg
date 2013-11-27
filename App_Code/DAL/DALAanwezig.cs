@@ -24,6 +24,14 @@ public class DALAanwezig
         return query;
 
     }
+
+    public List<Aanwezig> SelectAllAanwezige(int id)
+    {
+        var query = (from u in dc.Aanwezigs
+                     where u.EventId == id
+                     select u).ToList();
+        return query;
+    }
     public void delete(int e_int)
     {
         try

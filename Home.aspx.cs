@@ -81,7 +81,7 @@ public partial class Home : System.Web.UI.Page
             IList<User> test = inladen.selectgebruiker(gebruiker);
             User tester = test[0];
 
-            IList<int> Events = SelectAanwezig.SelectAllAanwezige(id);
+            IList<int> Events = SelectAanwezig.SelectEvent(id);
             
             foreach (int row in Events)
                 {
@@ -93,16 +93,15 @@ public partial class Home : System.Web.UI.Page
             }
             if (Aanwezig == false)
             {
-
+                             
                 Aanwezig aanwezigmaak = new Aanwezig();
                 aanwezigmaak.EventId = id;
                 aanwezigmaak.PersoonId = tester.Id;
+                aanwezigmaak.qrcode = tester.Id + tester.naam + id;
+                
                 BLLAanwezig aanwezigmaken = new BLLAanwezig();
                 aanwezigmaken.insert(aanwezigmaak);
                 BLLEvent.aanwezig(id);
-
-
-
                 //tabel verversen
                 rptEvents.DataBind();
 
