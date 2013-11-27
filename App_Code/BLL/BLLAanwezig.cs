@@ -25,9 +25,14 @@ public class BLLAanwezig
         return DalAddAanwezig.SelectAllAanwezige(id);
     }
 
-    public void delete(int id)
+    public void deleteEvent(int id)
     {
-        DalAddAanwezig.delete(id);
+        DalAddAanwezig.deleteEvent(id);
+
+    }
+    public void deletePersoon(int id)
+    {
+        DalAddAanwezig.deletePersoon(id);
 
     }
 }

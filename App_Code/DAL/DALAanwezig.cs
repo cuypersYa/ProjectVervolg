@@ -32,7 +32,7 @@ public class DALAanwezig
                      select u).ToList();
         return query;
     }
-    public void delete(int e_int)
+    public void deleteEvent(int e_int)
     {
         try
         {
@@ -52,4 +52,13 @@ public class DALAanwezig
         }
        
 
-    }
+  
+
+    public void deletePersoon(int p_int){
+        dc.Aanwezigs.DeleteAllOnSubmit(from e in dc.Aanwezigs
+                                  where e.PersoonId == p_int
+                                  select e);
+
+        dc.SubmitChanges();
+}
+}

@@ -26,6 +26,15 @@ public class DALEvent
         dc.SubmitChanges();
     }
 
+    public void afwezig(int p_int)
+    {
+        var record_to_update = (from e in dc.Events
+                                where e.Id == p_int
+                                select e).Single();
+        record_to_update.visitors--;
+        dc.SubmitChanges();
+    }
+
     public List<Event> SelectAll()
     {
         var query = (from u in dc.Events
@@ -50,7 +59,7 @@ public class DALEvent
                    where e.Id == e_int
                    select e).Single();
         BLLSpreker.delete(e_int);
-        BLLAanwezigen.delete(e_int);
+        BLLAanwezigen.deleteEvent(e_int);
         dc.Events.DeleteOnSubmit(eventVerwijder);
         
         dc.SubmitChanges();

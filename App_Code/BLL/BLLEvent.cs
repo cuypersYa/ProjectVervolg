@@ -22,6 +22,13 @@ public class BLLEvent
 
     }
 
+    public void afwezig(int p_int)
+    {
+        DalAddEvents.afwezig(p_int);
+
+
+    }
+
     public List<Event> SelectAllEvents()
     {
         return DalAddEvents.SelectAll();
