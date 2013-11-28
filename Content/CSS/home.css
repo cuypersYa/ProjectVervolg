@@ -1,0 +1,10 @@
+﻿#verwijder {
+    visibility: visible;
+}
+#ContentHeadCenter {
+    clear:both;
+}
+.page-header {
+    clear:both;
+    margin-top:50px;
+}
