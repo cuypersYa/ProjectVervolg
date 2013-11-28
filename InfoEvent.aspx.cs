@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MessagingToolkit.QRCode.Codec;
 using MessagingToolkit.QRCode.Codec.Data;
+using ASPSnippets.TwitterAPI;
 
 
 public partial class InfoEvent : System.Web.UI.Page
@@ -95,6 +96,10 @@ public partial class InfoEvent : System.Web.UI.Page
                 imgQrCode.Visible = false;
             }
         }
+
+        Session["timeout"] = ActiefEvent.datum;
+        
+
     }
     protected void btnAfwezig_Click(object sender, EventArgs e)
     {
@@ -125,7 +130,6 @@ public partial class InfoEvent : System.Web.UI.Page
         else
         {
             
-            
             IList<User> gebruikerlijst = BLLUser.selectgebruiker(gebruiker);
             User gebruikers = gebruikerlijst[0];
 
@@ -147,4 +151,19 @@ public partial class InfoEvent : System.Web.UI.Page
 
     
     }
+
+    protected void timer1_tick(object sender, EventArgs e)
+    {
+        if (0 > DateTime.Compare(DateTime.Now,
+        DateTime.Parse(Session["timeout"].ToString())))
+        {
+            lblTimer.Text = "Time left: " +
+            ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Days).ToString() + " days " +
+            ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Hours).ToString() + " hours " +
+            ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Minutes).ToString() + " mintues " +
+            ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Seconds).ToString() +" seconds ";
+        }
+    }  
+
+
 }

@@ -137,24 +137,9 @@ public partial class SignIn : System.Web.UI.Page
                 {
                     TwitterConnect twitter = new TwitterConnect();
 
-                    //LoggedIn User Twitter Profile Details
+                    
                     DataTable dt = twitter.FetchProfile();
-                    /*imgProfile.ImageUrl = dt.Rows[0]["profile_image_url"].ToString();
-                    var fullnaam = dt.Rows[0]["name"].ToString();
-                    var naam = fullnaam.Split(' ');
-                    lblName.Text = naam[0];
-                    lblTwitterId.Text = dt.Rows[0]["Id"].ToString();
-                    lblScreenName.Text = dt.Rows[0]["screen_name"].ToString();
-                    lblDescription.Text = dt.Rows[0]["description"].ToString();
-                    lblTweets.Text = dt.Rows[0]["statuses_count"].ToString();
-                    lblFollowers.Text = dt.Rows[0]["followers_count"].ToString();
-                    lblFriends.Text = dt.Rows[0]["friends_count"].ToString();
-                    lblFavorites.Text = dt.Rows[0]["favourites_count"].ToString();
-                    lblLocation.Text = dt.Rows[0]["location"].ToString();
-                    tblTwitter.Visible = true;
-                    */
-                    //Any other User Twitter Profile Details. Here jQueryFAQs
-                    //dt = twitter.FetchProfile("jQueryFAQs");
+                    
                     
 
                     btnLogin.Enabled = false;

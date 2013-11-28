@@ -55,6 +55,22 @@
     
     <br />
     <asp:Button ID="btnAfwezig" runat="server" Text="Aanwezig" CssClass="btn" OnClick="btnAfwezig_Click" />
-    
 
-    </asp:Content>
+    <div>
+        <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
+        <asp:Timer ID="timer1" runat="server" Interval="1000" OnTick="timer1_tick"></asp:Timer>
+    </div>
+
+    <div>
+        <asp:UpdatePanel id="updPnl" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <asp:Label ID="lblTimer" runat="server"></asp:Label>
+    </ContentTemplate>
+
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="timer1" EventName ="tick" />
+    </Triggers>
+</asp:UpdatePanel>
+</div>
+
+</asp:Content>
