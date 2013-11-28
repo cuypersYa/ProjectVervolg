@@ -54,7 +54,7 @@
     <asp:Image ID="imgQrCode" runat="server" />
     
     <br />
-    <asp:Button ID="btnAfwezig" runat="server" Text="Afwezig" CssClass="btn" OnClick="btnAfwezig_Click" />
+    <asp:Button ID="btnAfwezig" runat="server" Text="Aanwezig" CssClass="btn" OnClick="btnAfwezig_Click" />
     
 
     </asp:Content>

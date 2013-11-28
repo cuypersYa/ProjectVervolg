@@ -23,11 +23,14 @@
                      <asp:LinkButton ID="btnInfoEvent" OnClick="btnInfoEvent_Click" CommandArgument='<%# Eval("id") %>' runat="server" CssClass="h4">   <%# Eval("naam") %></asp:LinkButton>
                     </td>
                     <td>
+                        <%# Eval("datum") %>
+                    </td>
+                    <td>
                         <%# Eval("visitors") %>
                     </td>
-                    <td id="verwijder">
-                        <asp:LinkButton ID="btnAanwezig" OnClick="btnAanwezig_Click" CommandArgument='<%# Eval("id") %>' runat="server" Text="aanwezig"></asp:LinkButton>
-                    </td>
+                    
+                    
+
 
                 </tr>
             </ItemTemplate>

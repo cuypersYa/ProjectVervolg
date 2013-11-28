@@ -16,29 +16,31 @@ public partial class InfoEvent : System.Web.UI.Page
 {
     string gebruiker = "";
     int eventId = 0;
+    BLLEvent BLLEvent = new BLLEvent();
+    BLLAanwezig BLLAanwezig = new BLLAanwezig();
+    BLLUser BLLUser = new BLLUser();
+    BLLSpreker BLLSpreker = new BLLSpreker();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         gebruiker = (string)(Session["gebruikersnaam"]);
         lblgebruiker.Text = gebruiker;
 
         eventId = (int)(Session["eventid"]);
-        BLLEvent BLLEvents = new BLLEvent();
-        List<Event> ActiefEventLijst = BLLEvents.SelectEvent(eventId);
+        List<Event> ActiefEventLijst = BLLEvent.SelectEvent(eventId);
         Event ActiefEvent = ActiefEventLijst[0];
         lblEvent.Text = ActiefEvent.naam;
         lblEventInformation.Text = ActiefEvent.informatie;
 
         lblEventid.Text = Convert.ToString(eventId);
-        BLLAanwezig SelectAanwezig = new BLLAanwezig();
-        BLLUser SelectUser = new BLLUser();
-        IList<int> Events = SelectAanwezig.SelectEvent(eventId);
+        IList<int> Events = BLLAanwezig.SelectEvent(eventId);
         var Aanwezigen = new List<string>();
         
 
         foreach (int row in Events)
         {
             int id = row;
-            List<User> TussenAanwezig = SelectUser.selectAanwezigen(id);
+            List<User> TussenAanwezig = BLLUser.selectAanwezigen(id);
             User persoon = TussenAanwezig[0];
             Aanwezigen.Add(persoon.voornaam + " " + persoon.naam);
         } 
@@ -47,8 +49,8 @@ public partial class InfoEvent : System.Web.UI.Page
         rptAanwezig.DataSource = Aanwezigen;
         rptAanwezig.DataBind();
 
-        BLLSpreker SelectSpreker = new BLLSpreker();
-        List<Spreker> Sprekers = SelectSpreker.selectAll(eventId);
+        
+        List<Spreker> Sprekers = BLLSpreker.selectAll(eventId);
         List<string> LijstSprekers = new List<string>();
         List<string> LijstTijd = new List<string>();
 
@@ -61,44 +63,86 @@ public partial class InfoEvent : System.Web.UI.Page
         rptSprekers.DataSource = LijstSprekers;
         rptSprekers.DataBind();
 
-        BLLAanwezig BllAanwezige = new BLLAanwezig();
+        
         List<Aanwezig> LijstAanwezigen = new List<Aanwezig>();
-        LijstAanwezigen = BllAanwezige.SelectAlleAanwezige(eventId);
+        LijstAanwezigen = BLLAanwezig.SelectAlleAanwezige(eventId);
         List<System.Drawing.Image> LijstQR = new List<System.Drawing.Image>();
-
-
-        for (int i = 0; i < LijstAanwezigen.Count(); i++)
-        {
-            Aanwezig Aanwezigenqr = LijstAanwezigen[i];
-            QRCodeEncoder encoder = new QRCodeEncoder();
-            Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
-            img.Save("C:\\Users\\BJAAARN\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
-            imgQrCode.ImageUrl = "img.jpg";
-        }
-       
-    }
-    protected void btnAfwezig_Click(object sender, EventArgs e)
-    {
-        BLLAanwezig BllAanwezige = new BLLAanwezig();
-        BLLUser BllUser = new BLLUser();
-        BLLEvent BllEvent = new BLLEvent();
-        List<Aanwezig> LijstAanwezigen = new List<Aanwezig>();
-        LijstAanwezigen = BllAanwezige.SelectAlleAanwezige(eventId);
 
         eventId = (int)(Session["eventid"]);
         gebruiker = (string)(Session["gebruikersnaam"]);
-        List <User> AanwezigeLijst = BllUser.selectgebruiker(gebruiker);
+        List <User> AanwezigeLijst = BLLUser.selectgebruiker(gebruiker);
         User Aanwezige = AanwezigeLijst[0];
 
         foreach (Aanwezig row in LijstAanwezigen)
         {
             if (row.PersoonId == Aanwezige.Id)
             {
-                BllAanwezige.deletePersoon(Aanwezige.Id);
-                BllEvent.afwezig(eventId);
-                Response.Redirect("~/Home.aspx");
+                btnAfwezig.Text = "Afwezig";
+                for (int i = 0; i < LijstAanwezigen.Count(); i++)
+                {
 
+
+
+                    Aanwezig Aanwezigenqr = LijstAanwezigen[i];
+                    QRCodeEncoder encoder = new QRCodeEncoder();
+                    Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
+                    img.Save("C:\\Users\\BJAAARN\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+                    imgQrCode.ImageUrl = "img.jpg";
+                }
             }
+            else
+            {
+                imgQrCode.Visible = false;
+            }
+        }
+    }
+    protected void btnAfwezig_Click(object sender, EventArgs e)
+    {
+        eventId = (int)(Session["eventid"]);
+        gebruiker = (string)(Session["gebruikersnaam"]);
+        if (btnAfwezig.Text == "Afwezig")
+        {
+            List<Aanwezig> LijstAanwezigen = new List<Aanwezig>();
+            LijstAanwezigen = BLLAanwezig.SelectAlleAanwezige(eventId);
+
+            
+            List<User> AanwezigeLijst = BLLUser.selectgebruiker(gebruiker);
+            User Aanwezige = AanwezigeLijst[0];
+
+            foreach (Aanwezig row in LijstAanwezigen)
+            {
+                if (row.PersoonId == Aanwezige.Id)
+                {
+                    BLLAanwezig.deletePersoon(Aanwezige.Id);
+                    BLLEvent.afwezig(eventId);
+                    btnAfwezig.Text = "Aanwezig";
+                    Response.Redirect("~/Home.aspx");
+
+                }
+            }
+            
+        }
+        else
+        {
+            
+            
+            IList<User> gebruikerlijst = BLLUser.selectgebruiker(gebruiker);
+            User gebruikers = gebruikerlijst[0];
+
+            IList<int> Events = BLLAanwezig.SelectEvent(eventId);
+            
+            
+                             
+                Aanwezig aanwezigmaak = new Aanwezig();
+                aanwezigmaak.EventId = eventId;
+                aanwezigmaak.PersoonId = gebruikers.Id;
+                aanwezigmaak.qrcode = gebruikers.Id + gebruikers.naam + eventId;
+                
+                
+                BLLAanwezig.insert(aanwezigmaak);
+                BLLEvent.aanwezig(eventId);
+                btnAfwezig.Text = "Afwezig";
+                Response.Redirect("~/Home.aspx");
         }
 
     

@@ -21,7 +21,6 @@
 
        <asp:Button ID="btnFacebook" runat="server" Text="Login with FaceBook" OnClick="LoginFacebook" CssClass="btn btn-default" />
        <asp:Button ID="btnTwitter" runat="server" Text="Login with Twitter" OnClick="LoginTwitter" CssClass="btn btn-default"/>
-       <asp:Button ID="btnNietlog" runat="server" OnClick="btnNietlog_Click" Text="Log niet in" CssClass="btn btn-default" />
        <asp:Button ID="btnSignup" runat="server" OnClick="btnSignup_Click" Text="Sign up" CssClass="btn btn-default" />
         
 <hr />

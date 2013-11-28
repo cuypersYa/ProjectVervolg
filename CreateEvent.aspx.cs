@@ -233,17 +233,17 @@ public partial class CreateEvent : System.Web.UI.Page
             Sprekerbegintijd = (List<string>)Session["lijstbegintijd"];
             Sprekereindtijd = (List<string>)Session["lijsteindtijd"];
 
-            BLLUser inladen = new BLLUser();
-            IList<User> lijst = inladen.selectgebruiker(gebruiker);
+            BLLUser BLLUser = new BLLUser();
+            IList<User> lijst = BLLUser.selectgebruiker(gebruiker);
             User eigenaar = lijst[0];
             ideigenaar = eigenaar.Id;
 
 
 
-            BLLEvent maakEvent = new BLLEvent();
+            BLLEvent BLLEvent = new BLLEvent();
             Event newEvent = new Event();
             Boolean toegestaanNaam = new Boolean();
-            List<Event> LijstEvents = maakEvent.SelectAllEvents();
+            List<Event> LijstEvents = BLLEvent.SelectAllEvents();
 
             foreach (Event row in LijstEvents)
             {
@@ -269,11 +269,11 @@ public partial class CreateEvent : System.Web.UI.Page
                     newEvent.datum = clDatum.SelectedDate;
                     newEvent.eigenaar = ideigenaar;
                     newEvent.visitors = 0;
-                    maakEvent.insert(newEvent);
-                    BLLSpreker maakSpreker = new BLLSpreker();
+                    BLLEvent.insert(newEvent);
+                    BLLSpreker BLLSpreker = new BLLSpreker();
 
                     int i;
-                    List<Event> SelectEvent = maakEvent.SelectEvent(newEvent.Id);
+                    List<Event> SelectEvent = BLLEvent.SelectEvent(newEvent.Id);
                     newEvent = SelectEvent[0];
                     for (i = 0; i < Sprekernaam.Count; i++)
                     {
@@ -289,7 +289,7 @@ public partial class CreateEvent : System.Web.UI.Page
                         {
 
                             newSpreker.event_id = newEvent.Id;
-                            maakSpreker.insert(newSpreker);
+                            BLLSpreker.insert(newSpreker);
                         }
                     }
 

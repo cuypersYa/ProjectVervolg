@@ -13,7 +13,6 @@ public partial class Home : System.Web.UI.Page
     BLLEvent BLLEvent = new BLLEvent();
     BLLAanwezig BLLAanwezig = new BLLAanwezig();
     BLLUser BLLUser = new BLLUser();
-    Boolean Aanwezig = false;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -31,43 +30,13 @@ public partial class Home : System.Web.UI.Page
 
 
         gebruiker = (string)(Session["gebruikersnaam"]);
-        if (gebruiker == "")
-        {
-            btnAlleenAdmin.Visible = false;
-            btnMaakEvent.Visible = false;
-            lblTest.Text = "Welkom";
-
-        }
-        else
-        {
+       
             CreativityEventDataContext dc = new CreativityEventDataContext();
 
             lblUser.Text = gebruiker;
             IList<User> test = BLLUser.selectgebruiker(gebruiker);
             User tester = test[0];
             lblTest.Text = "Welkom " + tester.voornaam;
-
-           /* foreach (RepeaterItem row in rptEvents.Items)
-            {
-                LinkButton btnAanwezig = (LinkButton)(sender);
-                int eventid = row.Id;
-                List<int> PersoonAanwezig = BLLAanwezig.SelectEvent(eventid);
-
-                foreach (int rij in PersoonAanwezig)
-                {
-                    List<User> TussenAanwezig = BLLUser.selectAanwezigen(rij);
-                    User persoon = TussenAanwezig[0];
-                    if (persoon.gebruikersnaam == tester.gebruikersnaam)
-                    {
-                        Aanwezig = true;
-                        btnAanwezig.Text = "Afwezig";
-                    }
-
-
-
-                }
-            } */
-
                 if (tester.rol == "gewoon")
                 {
                     btnAlleenAdmin.Visible = true;
@@ -77,10 +46,10 @@ public partial class Home : System.Web.UI.Page
                     btnAlleenAdmin.Visible = false;
                 }
             }
-        }
+        
     
 
-
+/*
 
     protected void btnAanwezig_Click(object sender, EventArgs e)
     {
@@ -136,7 +105,7 @@ public partial class Home : System.Web.UI.Page
             }
         }
     }
-
+    */
     protected void btnInfoEvent_Click(object sender, EventArgs e)
     {
 
