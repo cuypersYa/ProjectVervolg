@@ -15,7 +15,8 @@ using ASPSnippets.TwitterAPI;
 
 public partial class InfoEvent : System.Web.UI.Page
 {
-    string gebruiker = "";
+    //string gebruiker = "";
+    int gebruikerid = 0;
     int eventId = 0;
     BLLEvent BLLEvent = new BLLEvent();
     BLLAanwezig BLLAanwezig = new BLLAanwezig();
@@ -24,8 +25,10 @@ public partial class InfoEvent : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        gebruiker = (string)(Session["gebruikersnaam"]);
-        lblgebruiker.Text = gebruiker;
+        gebruikerid = (int)(Session["gebruikersid"]);
+        IList<User> userLijst = BLLUser.selectgebruiker(gebruikerid);
+        User user = userLijst[0];
+        lblgebruiker.Text = user.voornaam;
 
         eventId = (int)(Session["eventid"]);
         List<Event> ActiefEventLijst = BLLEvent.SelectEvent(eventId);
@@ -41,7 +44,7 @@ public partial class InfoEvent : System.Web.UI.Page
         foreach (int row in Events)
         {
             int id = row;
-            List<User> TussenAanwezig = BLLUser.selectAanwezigen(id);
+            List<User> TussenAanwezig = BLLUser.selectgebruiker(id);
             User persoon = TussenAanwezig[0];
             Aanwezigen.Add(persoon.voornaam + " " + persoon.naam);
         } 
@@ -70,8 +73,7 @@ public partial class InfoEvent : System.Web.UI.Page
         List<System.Drawing.Image> LijstQR = new List<System.Drawing.Image>();
 
         eventId = (int)(Session["eventid"]);
-        gebruiker = (string)(Session["gebruikersnaam"]);
-        List <User> AanwezigeLijst = BLLUser.selectgebruiker(gebruiker);
+        List <User> AanwezigeLijst = BLLUser.selectgebruiker(user.Id);
         User Aanwezige = AanwezigeLijst[0];
 
         foreach (Aanwezig row in LijstAanwezigen)
@@ -81,9 +83,6 @@ public partial class InfoEvent : System.Web.UI.Page
                 btnAfwezig.Text = "Afwezig";
                 for (int i = 0; i < LijstAanwezigen.Count(); i++)
                 {
-
-
-
                     Aanwezig Aanwezigenqr = LijstAanwezigen[i];
                     QRCodeEncoder encoder = new QRCodeEncoder();
                     Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
@@ -98,20 +97,20 @@ public partial class InfoEvent : System.Web.UI.Page
         }
 
         Session["timeout"] = ActiefEvent.datum;
-        
-
-    }
+     }
     protected void btnAfwezig_Click(object sender, EventArgs e)
     {
         eventId = (int)(Session["eventid"]);
-        gebruiker = (string)(Session["gebruikersnaam"]);
+        gebruikerid = (int)(Session["gebruikersid"]);
+        IList<User> userLijst = BLLUser.selectgebruiker(gebruikerid);
+        User user = userLijst[0];
         if (btnAfwezig.Text == "Afwezig")
         {
             List<Aanwezig> LijstAanwezigen = new List<Aanwezig>();
             LijstAanwezigen = BLLAanwezig.SelectAlleAanwezige(eventId);
 
             
-            List<User> AanwezigeLijst = BLLUser.selectgebruiker(gebruiker);
+            List<User> AanwezigeLijst = BLLUser.selectgebruiker(user.Id);
             User Aanwezige = AanwezigeLijst[0];
 
             foreach (Aanwezig row in LijstAanwezigen)
@@ -130,29 +129,25 @@ public partial class InfoEvent : System.Web.UI.Page
         else
         {
             
-            IList<User> gebruikerlijst = BLLUser.selectgebruiker(gebruiker);
+            IList<User> gebruikerlijst = BLLUser.selectgebruiker(user.Id);
             User gebruikers = gebruikerlijst[0];
 
             IList<int> Events = BLLAanwezig.SelectEvent(eventId);
-            
-            
-                             
-                Aanwezig aanwezigmaak = new Aanwezig();
-                aanwezigmaak.EventId = eventId;
-                aanwezigmaak.PersoonId = gebruikers.Id;
-                aanwezigmaak.qrcode = gebruikers.Id + gebruikers.naam + eventId;
+            Aanwezig aanwezigmaak = new Aanwezig();
+            aanwezigmaak.EventId = eventId;
+            aanwezigmaak.PersoonId = gebruikers.Id;
+            aanwezigmaak.qrcode = gebruikers.Id + gebruikers.naam + eventId;
                 
-                
-                BLLAanwezig.insert(aanwezigmaak);
-                BLLEvent.aanwezig(eventId);
-                btnAfwezig.Text = "Afwezig";
-                Response.Redirect("~/Home.aspx");
+            BLLAanwezig.insert(aanwezigmaak);
+            BLLEvent.aanwezig(eventId);
+            btnAfwezig.Text = "Afwezig";
+            Response.Redirect("~/Home.aspx");
         }
 
     
     }
 
-    protected void timer1_tick(object sender, EventArgs e)
+    protected void Timer(object sender, EventArgs e)
     {
         if (0 > DateTime.Compare(DateTime.Now,
         DateTime.Parse(Session["timeout"].ToString())))
@@ -164,6 +159,4 @@ public partial class InfoEvent : System.Web.UI.Page
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Seconds).ToString() +" seconds ";
         }
     }  
-
-
 }

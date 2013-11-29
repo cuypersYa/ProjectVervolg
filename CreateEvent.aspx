@@ -37,11 +37,12 @@
 
         <br />
         <asp:Label ID="lblDatum" runat="server" AssociatedControlID="clDatum" Text="Datum"></asp:Label>
-        <asp:Calendar ID="clDatum" runat="server" SelectedDate="10/30/2013 18:03:17" ></asp:Calendar>
+        <asp:Calendar ID="clDatum" runat="server" SelectedDate="10/30/2013 18:03:17" VisibleDate="2013-11-28" ></asp:Calendar>
+        <asp:TextBox ID="txtTijd" runat="server" TextMode="Time"></asp:TextBox>
+        <br />
         <asp:Label ID="lblFeedbackDatum" runat="server"></asp:Label>
         <br />
         <asp:Button ID="btnMaak" runat="server" OnClick="btnMaak_Click" Text="Maak aan" CssClass="btn btn-primary btn-large" />
-        <p>
-            &nbsp;</p>
+        <p>&nbsp;</p>
 
 </asp:Content>

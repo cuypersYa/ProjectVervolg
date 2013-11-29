@@ -8,21 +8,21 @@ using System.Web;
 /// </summary>
 public class BLLSpreker
 {
-    DALSpreker DalSprekers = new DALSpreker();
+    DALSpreker DALSprekers = new DALSpreker();
 
     public void insert(Spreker p_eve)
     {
-        DalSprekers.insert(p_eve);
+        DALSprekers.insert(p_eve);
     }
 
     public void delete(int id)
     {
-        DalSprekers.delete(id);
+        DALSprekers.delete(id);
 
     }
 
     public List<Spreker> selectAll(int event_id)
     {
-        return DalSprekers.selectAll(event_id);
+        return DALSprekers.selectAll(event_id);
     }
 }

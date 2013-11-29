@@ -10,11 +10,9 @@ public class DALUser
 {
     private CreativityEventDataContext dc = new CreativityEventDataContext();
 
-    //INSERT
+    
     public void insert(User p_us)
     {
-
-
         dc.Users.InsertOnSubmit(p_us);
         dc.SubmitChanges();
         
@@ -30,8 +28,6 @@ public class DALUser
 
         List<User> x = query.ToList();
 
-        // Execute the query, and change the column values
-        // you want to change.
         if (x.Count > 0)
         {
             foreach (User gebruikers in query)
@@ -49,15 +45,16 @@ public class DALUser
         return Toegelaten;
     }
 
-    public List<User> selectGebruiker(string g)
+    public List<User> selectGebruiker(int g_id)
     {
-        var gebruiker = from u in dc.Users where u.gebruikersnaam == g
+        var gebruiker = from u in dc.Users where u.Id == g_id
                      select u;
         return gebruiker.ToList();
     }
 
-    public List<User> selectAanwezigen(int id){
-        var gebruikers = from u in dc.Users where u.Id == id select u;
-        return gebruikers.ToList();
+    public List<int> selectIdGebruiker(string gebruikersnaam)
+    {
+        var gebruikerid = from u in dc.Users where u.gebruikersnaam == gebruikersnaam select u.Id;
+        return gebruikerid.ToList();
     }
 }

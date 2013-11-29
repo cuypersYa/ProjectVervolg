@@ -8,8 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Home : System.Web.UI.Page
 {
-
-    string gebruiker = "";
+    int gebruikerid = 0;
+    //string gebruiker = "";
     BLLEvent BLLEvent = new BLLEvent();
     BLLAanwezig BLLAanwezig = new BLLAanwezig();
     BLLUser BLLUser = new BLLUser();
@@ -26,102 +26,37 @@ public partial class Home : System.Web.UI.Page
 
             }
         }
-
-
-
-        gebruiker = (string)(Session["gebruikersnaam"]);
-       
-            CreativityEventDataContext dc = new CreativityEventDataContext();
-
-            lblUser.Text = gebruiker;
-            IList<User> test = BLLUser.selectgebruiker(gebruiker);
-            User tester = test[0];
-            lblTest.Text = "Welkom " + tester.voornaam;
-                if (tester.rol == "gewoon")
-                {
-                    btnAlleenAdmin.Visible = true;
-                }
-                else
-                {
-                    btnAlleenAdmin.Visible = false;
-                }
-            }
+        gebruikerid = (int)(Session["gebruikersid"]);
+        CreativityEventDataContext dc = new CreativityEventDataContext();
         
-    
+        IList<User> userLijst = BLLUser.selectgebruiker(gebruikerid);
+        User user = userLijst[0];
+        lblUser.Text = user.gebruikersnaam;
+        lblTest.Text = "Welkom " + user.voornaam;
 
-/*
-
-    protected void btnAanwezig_Click(object sender, EventArgs e)
-    {
-        gebruiker = (string)(Session["gebruikersnaam"]);
-        LinkButton btnAanwezig = (LinkButton)(sender);
-        Aanwezig = false;
-        
-        
-        if (gebruiker == "")
+        if (user.rol == "gewoon")
         {
-            btnAanwezig.Attributes["style"] = "visibility: hidden";
+            btnAlleenAdmin.Visible = true;
         }
         else
         {
-
-        
-            int id = Convert.ToInt16(btnAanwezig.CommandArgument);
-
-            
-            
-
-            IList<User> test = BLLUser.selectgebruiker(gebruiker);
-            User tester = test[0];
-
-            IList<int> Events = BLLAanwezig.SelectEvent(id);
-            
-            foreach (int row in Events)
-                {
-                List<User> TussenAanwezig = BLLUser.selectAanwezigen(row);
-                User persoon = TussenAanwezig[0];
-                if (persoon.gebruikersnaam == tester.gebruikersnaam){
-                Aanwezig = true;
-                }
-            }
-            if (Aanwezig == false)
-            {
-                             
-                Aanwezig aanwezigmaak = new Aanwezig();
-                aanwezigmaak.EventId = id;
-                aanwezigmaak.PersoonId = tester.Id;
-                aanwezigmaak.qrcode = tester.Id + tester.naam + id;
-                
-                
-                BLLAanwezig.insert(aanwezigmaak);
-                BLLEvent.aanwezig(id);
-                //tabel verversen
-                rptEvents.DataBind();
-
-            }
-            else
-            {
-                btnAanwezig.Text = "Afwezig";
-            }
+            btnAlleenAdmin.Visible = false;
         }
-    }
-    */
+       }
+ 
     protected void btnInfoEvent_Click(object sender, EventArgs e)
     {
-
         LinkButton btnInfoEvent = (LinkButton)(sender);
         int id = Convert.ToInt16(btnInfoEvent.CommandArgument);
-        Session.Add("gebruikersnaam", gebruiker);
+        Session.Add("gebruikersid", gebruikerid);
         Session.Add("eventid", id);
         Response.Redirect("~/InfoEvent.aspx");
-
-
     }
 
 
     protected void btnMaakEvent_Click(object sender, EventArgs e)
     {
-        Session.Add("gebruikersnaam", gebruiker);
+        Session.Add("gebruikersid", gebruikerid);
         Response.Redirect("~/CreateEvent.aspx");
         
     }

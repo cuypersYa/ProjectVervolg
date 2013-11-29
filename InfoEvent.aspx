@@ -58,7 +58,7 @@
 
     <div>
         <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
-        <asp:Timer ID="timer1" runat="server" Interval="1000" OnTick="timer1_tick"></asp:Timer>
+        <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="Timer"></asp:Timer>
     </div>
 
     <div>
@@ -68,7 +68,7 @@
     </ContentTemplate>
 
     <Triggers>
-        <asp:AsyncPostBackTrigger ControlID="timer1" EventName ="tick" />
+        <asp:AsyncPostBackTrigger ControlID="timer" EventName ="tick" />
     </Triggers>
 </asp:UpdatePanel>
 </div>

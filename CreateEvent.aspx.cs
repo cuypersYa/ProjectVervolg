@@ -8,17 +8,17 @@ using System.Web.UI.WebControls;
 
 public partial class CreateEvent : System.Web.UI.Page
 {
-    String gebruiker = "";
+    int gebruikerid = 0;
     List<string> Sprekernaam = new List<string>();
     List<string> Sprekerbegintijd = new List<string>();
     List<string> Sprekereindtijd = new List<string>();
-   
-    
+    BLLSpreker BLLSpreker = new BLLSpreker();
+    BLLUser BLLUser = new BLLUser();
+    BLLEvent BLLEvent = new BLLEvent();
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        gebruiker = (string)(Session["gebruikersnaam"]);
-        
+        gebruikerid = (int)(Session["gebruikersid"]);
     }
  
     public void txtSpreker1_TextChanged(object sender, EventArgs e)
@@ -33,8 +33,6 @@ public partial class CreateEvent : System.Web.UI.Page
             if (Convert.ToDateTime(txtBeginTijd1.Text) < Convert.ToDateTime(txtEindTijd1.Text))
             {
                 lblFeedbackTijd.Text="";
-                
-
                 Sprekerbegintijd.Add(txtBeginTijd1.Text);
                 Sprekereindtijd.Add(txtEindTijd1.Text);
                 Session.Add("lijstsprekers", Sprekernaam);
@@ -60,6 +58,7 @@ public partial class CreateEvent : System.Web.UI.Page
               
                 Session.Add("sprekergetal", 2);
                 break;
+
             case 3: txtSpreker3.Visible = true;
                 txtBeginTijd3.Visible = true;
                 txtEindTijd3.Visible = true;
@@ -225,82 +224,80 @@ public partial class CreateEvent : System.Web.UI.Page
     }
     protected void btnMaak_Click(object sender, EventArgs e)
     {
-        
-        if (lblFeedbackTijd.Text == "")
+        lblFeedbackNaam.Text = "";
+        Boolean toegestaan = true;
+
+        int ideigenaar = 0;
+        Sprekernaam = (List<string>)Session["lijstsprekers"];
+        Sprekerbegintijd = (List<string>)Session["lijstbegintijd"];
+        Sprekereindtijd = (List<string>)Session["lijsteindtijd"];
+
+        IList<User> userlijst = BLLUser.selectgebruiker(gebruikerid);
+        User user = userlijst[0];
+        gebruikerid = user.Id;
+        Event newEvent = new Event();
+        List<Event> LijstEvents = BLLEvent.SelectAllEvents();
+
+        foreach (Event row in LijstEvents)
         {
-            int ideigenaar = 0;
-            Sprekernaam = (List<string>)Session["lijstsprekers"];
-            Sprekerbegintijd = (List<string>)Session["lijstbegintijd"];
-            Sprekereindtijd = (List<string>)Session["lijsteindtijd"];
-
-            BLLUser BLLUser = new BLLUser();
-            IList<User> lijst = BLLUser.selectgebruiker(gebruiker);
-            User eigenaar = lijst[0];
-            ideigenaar = eigenaar.Id;
-
-
-
-            BLLEvent BLLEvent = new BLLEvent();
-            Event newEvent = new Event();
-            Boolean toegestaanNaam = new Boolean();
-            List<Event> LijstEvents = BLLEvent.SelectAllEvents();
-
-            foreach (Event row in LijstEvents)
+            if (txtTitel.Text == row.naam)
             {
-                toegestaanNaam = true;
-                if (txtTitel.Text == row.naam)
-                {
-                    lblFeedbackNaam.Text = "Naam van het evenement bestaat al";
-                    toegestaanNaam = false;
-                }
+                lblFeedbackNaam.Text = "Naam van het evenement bestaat al";
+                toegestaan = false;
             }
-            if (toegestaanNaam == true)
+            if (clDatum.SelectedDate < DateTime.Now)
             {
-                lblFeedbackNaam.Text = "";
-                if (clDatum.SelectedDate < DateTime.Now)
-                {
-                    lblFeedbackDatum.Text = "Datum ligt in het verleden";
-                }
-                else
-                {
-                    lblFeedbackDatum.Text = "";
-                    newEvent.naam = txtTitel.Text;
-                    newEvent.informatie = txtInformatie.Text;
-                    newEvent.datum = clDatum.SelectedDate;
-                    newEvent.eigenaar = ideigenaar;
-                    newEvent.visitors = 0;
-                    BLLEvent.insert(newEvent);
-                    BLLSpreker BLLSpreker = new BLLSpreker();
-
-                    int i;
-                    List<Event> SelectEvent = BLLEvent.SelectEvent(newEvent.Id);
-                    newEvent = SelectEvent[0];
-                    for (i = 0; i < Sprekernaam.Count; i++)
-                    {
-                        Spreker newSpreker = new Spreker();
-                        newSpreker.naam = Sprekernaam[i];
-                        newSpreker.begintijd = Sprekerbegintijd[i];
-                        newSpreker.eindtijd = Sprekereindtijd[i];
-                        if (newSpreker.naam == "")
-                        {
-
-                        }
-                        else
-                        {
-
-                            newSpreker.event_id = newEvent.Id;
-                            BLLSpreker.insert(newSpreker);
-                        }
-                    }
-
-
-                    Session.Add("gebruikersnaam", gebruiker);
-                    Response.Redirect("~/Home.aspx");
-                }
+                lblFeedbackDatum.Text = "Datum ligt in het verleden";
+                toegestaan = false;
             }
+
         }
-       
-            
+        if (toegestaan == true)
+        {
+            lblFeedbackDatum.Text = "";
+            newEvent.naam = txtTitel.Text;
+            newEvent.informatie = txtInformatie.Text;
+            newEvent.datum = clDatum.SelectedDate;
+            newEvent.eigenaar = ideigenaar;
+            newEvent.visitors = 0;
+            BLLEvent.insert(newEvent);
+            if (txtSpreker1.Text == "")
+            {
+
+            }
+            else
+            {
+                int i;
+                List<Event> SelectEvent = BLLEvent.SelectEvent(newEvent.Id);
+                newEvent = SelectEvent[0];
+                for (i = 0; i < Sprekernaam.Count; i++)
+                {
+                    Spreker newSpreker = new Spreker();
+                    newSpreker.naam = Sprekernaam[i];
+                    newSpreker.begintijd = Sprekerbegintijd[i];
+                    newSpreker.eindtijd = Sprekereindtijd[i];
+                    if (newSpreker.naam == "")
+                    {
+
+                    }
+                    else
+                    {
+                        newSpreker.event_id = newEvent.Id;
+                        BLLSpreker.insert(newSpreker);
+                    }
+                }
+
+
+            }
+            Session.Add("gebruikersid", gebruikerid);
+            Response.Redirect("~/Home.aspx");
         }
     }
+   
+}
+
+       
+            
+        
+    
    
