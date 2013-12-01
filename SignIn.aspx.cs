@@ -12,26 +12,29 @@ using System.Web.Script.Serialization;
 
 public partial class SignIn : System.Web.UI.Page
 {
+    BLLUser BLLUser = new BLLUser();
+    User newUser = new User();
+    List<int> gebruikersidlijst = new List<int>();
+    int gebruikersid = 0;
+    
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         var gebruiker = txtGebruikersnaam.Text;
         var wachtwoord = txtWachtwoord.Text;
         Boolean toegelaten = false;
-        BLLUser BllCheckUser = new BLLUser();
-       
-        
-        User newUser = new User();
-
         newUser.gebruikersnaam = gebruiker;
         newUser.wachtwoord = wachtwoord;
+        gebruikersidlijst = BLLUser.selectgebruikerid(newUser.gebruikersnaam);
+        gebruikersid = gebruikersidlijst[0];
 
+        
 
-        toegelaten = BllCheckUser.Checker(newUser);
+        toegelaten = BLLUser.Checker(newUser);
 
         if (toegelaten == true)
         {
-            Session.Add("gebruikersnaam", gebruiker);
+            Session.Add("gebruikersid", gebruikersid);
             Response.Redirect("~/Home.aspx");
         }
         else
@@ -44,16 +47,7 @@ public partial class SignIn : System.Web.UI.Page
         
         Response.Redirect("~/CreateUser.aspx");
     }
-    protected void btnNietlog_Click(object sender, EventArgs e)
-    {
-        
-        var gebruikers ="";
-        Session.Add("gebruikersnaam", gebruikers);
-        Response.Redirect("~/Home.aspx");
-        
-    }
-
-
+   
     protected void LoginFacebook(object sender, EventArgs e)
     {
         FaceBookConnect.Authorize("user_photos,email", Request.Url.AbsoluteUri.Split('?')[0]);
@@ -88,11 +82,7 @@ public partial class SignIn : System.Web.UI.Page
                 string data = FaceBookConnect.Fetch(code, "me");
                 FaceBookUser faceBookUser = new JavaScriptSerializer().Deserialize<FaceBookUser>(data);
                
-                
                 btnLogin.Enabled = false;
-
-                User newUser = new User();
-                BLLUser BLLAddUsers = new BLLUser();
 
                 var voornaam = faceBookUser.First_Name;
                 var naam = faceBookUser.Last_Name;
@@ -101,14 +91,16 @@ public partial class SignIn : System.Web.UI.Page
                 var gebruikersnaam = faceBookUser.UserName;
                 Boolean toegestaan = false;
 
-
                 newUser.wachtwoord = wachtwoord;
                 newUser.gebruikersnaam = gebruikersnaam;
-                toegestaan = BLLAddUsers.Checker(newUser);
+                gebruikersidlijst = BLLUser.selectgebruikerid(newUser.gebruikersnaam);
+                gebruikersid = gebruikersidlijst[0];
+
+                toegestaan = BLLUser.Checker(newUser);
                 if (toegestaan == true)
                 {
                     lblwerkt.Text = "gebruiker bestaat al";
-                    Session.Add("gebruikersnaam", newUser.gebruikersnaam);
+                    Session.Add("gebruikersid", gebruikersid);
                     Response.Redirect("~/Home.aspx");
                     
                 }
@@ -118,8 +110,8 @@ public partial class SignIn : System.Web.UI.Page
                     newUser.voornaam = voornaam;
                     newUser.naam = naam;
                     newUser.rol = "visitor";
-                    BLLAddUsers.insert(newUser);
-                    Session.Add("gebruikersnaam", newUser.gebruikersnaam);
+                    BLLUser.insert(newUser);
+                    Session.Add("gebruikersid", gebruikersid);
                     Response.Redirect("~/Home.aspx");
        
                 }
@@ -136,31 +128,11 @@ public partial class SignIn : System.Web.UI.Page
                 if (TwitterConnect.IsAuthorized)
                 {
                     TwitterConnect twitter = new TwitterConnect();
-
-                    //LoggedIn User Twitter Profile Details
-                    DataTable dt = twitter.FetchProfile();
-                    /*imgProfile.ImageUrl = dt.Rows[0]["profile_image_url"].ToString();
-                    var fullnaam = dt.Rows[0]["name"].ToString();
-                    var naam = fullnaam.Split(' ');
-                    lblName.Text = naam[0];
-                    lblTwitterId.Text = dt.Rows[0]["Id"].ToString();
-                    lblScreenName.Text = dt.Rows[0]["screen_name"].ToString();
-                    lblDescription.Text = dt.Rows[0]["description"].ToString();
-                    lblTweets.Text = dt.Rows[0]["statuses_count"].ToString();
-                    lblFollowers.Text = dt.Rows[0]["followers_count"].ToString();
-                    lblFriends.Text = dt.Rows[0]["friends_count"].ToString();
-                    lblFavorites.Text = dt.Rows[0]["favourites_count"].ToString();
-                    lblLocation.Text = dt.Rows[0]["location"].ToString();
-                    tblTwitter.Visible = true;
-                    */
-                    //Any other User Twitter Profile Details. Here jQueryFAQs
-                    //dt = twitter.FetchProfile("jQueryFAQs");
+                   
                     
-
+                    DataTable dt = twitter.FetchProfile();
+                    
                     btnLogin.Enabled = false;
-
-                    User newUser = new User();
-                    BLLUser BLLAddUsers = new BLLUser();
 
                     var fullnaam = dt.Rows[0]["name"].ToString();
                     var splitnaam = fullnaam.Split(' ');
@@ -170,16 +142,19 @@ public partial class SignIn : System.Web.UI.Page
                     var email = "";
                     var wachtwoord = "";
                     var gebruikersnaam = dt.Rows[0]["screen_name"].ToString(); 
+                    
                     Boolean toegestaan = false;
 
 
                     newUser.wachtwoord = wachtwoord;
                     newUser.gebruikersnaam = gebruikersnaam;
-                    toegestaan = BLLAddUsers.Checker(newUser);
+                    gebruikersidlijst = BLLUser.selectgebruikerid(newUser.gebruikersnaam);
+                    gebruikersid = gebruikersidlijst[0];
+                    toegestaan = BLLUser.Checker(newUser);
                     if (toegestaan == true)
                     {
                         lblwerkt.Text = "gebruiker bestaat al";
-                        Session.Add("gebruikersnaam", newUser.gebruikersnaam);
+                        Session.Add("gebruikersid", gebruikersid);
                         Response.Redirect("~/Home.aspx");
 
                     }
@@ -189,8 +164,8 @@ public partial class SignIn : System.Web.UI.Page
                         newUser.voornaam = voornaam;
                         newUser.naam = naam;
                         newUser.rol = "visitor";
-                        BLLAddUsers.insert(newUser);
-                        Session.Add("gebruikersnaam", newUser.gebruikersnaam);
+                        BLLUser.insert(newUser);
+                        Session.Add("gebruikersid", gebruikersid);
                         Response.Redirect("~/Home.aspx");
 
                     }

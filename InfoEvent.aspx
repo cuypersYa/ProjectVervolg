@@ -54,7 +54,23 @@
     <asp:Image ID="imgQrCode" runat="server" />
     
     <br />
-    <asp:Button ID="btnAfwezig" runat="server" Text="Afwezig" CssClass="btn" OnClick="btnAfwezig_Click" />
-    
+    <asp:Button ID="btnAfwezig" runat="server" Text="Aanwezig" CssClass="btn" OnClick="btnAfwezig_Click" />
 
-    </asp:Content>
+    <div>
+        <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
+        <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="Timer"></asp:Timer>
+    </div>
+
+    <div>
+        <asp:UpdatePanel id="updPnl" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <asp:Label ID="lblTimer" runat="server"></asp:Label>
+    </ContentTemplate>
+
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="timer" EventName ="tick" />
+    </Triggers>
+</asp:UpdatePanel>
+</div>
+
+</asp:Content>

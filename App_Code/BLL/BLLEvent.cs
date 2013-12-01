@@ -8,40 +8,36 @@ using System.Web;
 /// </summary>
 public class BLLEvent
 {
-    DALEvent DalAddEvents = new DALEvent();
+    DALEvent DALEvents = new DALEvent();
 
     public void insert(Event p_eve)
     {
-        DalAddEvents.insert(p_eve);
+        DALEvents.insert(p_eve);
     }
 
     public void aanwezig(int p_int)
     {
-        DalAddEvents.aanwezig(p_int);
-
-
+        DALEvents.aanwezig(p_int);
     }
 
     public void afwezig(int p_int)
     {
-        DalAddEvents.afwezig(p_int);
-
-
+        DALEvents.afwezig(p_int);
     }
 
     public List<Event> SelectAllEvents()
     {
-        return DalAddEvents.SelectAll();
+        return DALEvents.SelectAll();
     }
 
     public List<Event> SelectEvent(int p_id)
     {
-        return DalAddEvents.SelectEvent(p_id);
+        return DALEvents.SelectEvent(p_id);
     }
 
     public void delete(int id)
     {
-        DalAddEvents.delete(id);
+        DALEvents.delete(id);
 
     }
 }

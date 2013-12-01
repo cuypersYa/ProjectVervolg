@@ -7,12 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class CreateUser : System.Web.UI.Page
 {
-    
+    BLLUser BLLUser = new BLLUser();
+    User newUser = new User();
     protected void btnSignup_Click(object sender, EventArgs e)
     {
-        User newUser = new User();
-        BLLUser BLLAddUsers = new BLLUser();
-        if (Page.IsValid)
+       if (Page.IsValid)
         {
             var voornaam = txtVoornaam.Text;
             var naam = txtNaam.Text;
@@ -24,7 +23,7 @@ public partial class CreateUser : System.Web.UI.Page
           
             newUser.wachtwoord = wachtwoord;
             newUser.gebruikersnaam = gebruikersnaam;
-            toegestaan = BLLAddUsers.Checker(newUser);
+            toegestaan = BLLUser.Checker(newUser);
             if (toegestaan == true)
             {
                 lblinorde.Text = "gebruiker bestaat al";
@@ -35,15 +34,9 @@ public partial class CreateUser : System.Web.UI.Page
                 newUser.voornaam = voornaam;
                 newUser.naam = naam;
                 newUser.rol = "visitor";
-                BLLAddUsers.insert(newUser);
+                BLLUser.insert(newUser);
                 Response.Redirect("~/Signin.aspx");
             }
-            
-           
-        
-        }
-       
-
-      
-    }
+         }
+     }
 }

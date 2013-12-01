@@ -8,31 +8,31 @@ using System.Web;
 /// </summary>
 public class BLLAanwezig
 {
-    DALAanwezig DalAddAanwezig = new DALAanwezig();
+    DALAanwezig DALAanwezig = new DALAanwezig();
 
     public void insert(Aanwezig p_eve)
     {
-        DalAddAanwezig.insert(p_eve);
+        DALAanwezig.insert(p_eve);
     }
 
     public List<int> SelectEvent(int id)
     {
-        return DalAddAanwezig.SelectEvent(id);
+        return DALAanwezig.SelectEvent(id);
     }
 
     public List<Aanwezig> SelectAlleAanwezige(int id)
     {
-        return DalAddAanwezig.SelectAllAanwezige(id);
+        return DALAanwezig.SelectAllAanwezige(id);
     }
 
     public void deleteEvent(int id)
     {
-        DalAddAanwezig.deleteEvent(id);
+        DALAanwezig.deleteEvent(id);
 
     }
     public void deletePersoon(int id)
     {
-        DalAddAanwezig.deletePersoon(id);
+        DALAanwezig.deletePersoon(id);
 
     }
 }

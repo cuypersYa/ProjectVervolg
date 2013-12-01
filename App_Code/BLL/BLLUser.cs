@@ -8,28 +8,30 @@ using System.Web;
 /// </summary>
 public class BLLUser
 {
-    DALUser DalAddUsers = new DALUser();
+    DALUser DALUsers = new DALUser();
 
     public void insert(User p_us)
     {
-        DalAddUsers.insert(p_us);
+        DALUsers.insert(p_us);
     }
 
     public Boolean Checker(User gebruiker)
     {
         Boolean Toegelaten = false;
-        Toegelaten = DalAddUsers.Check(gebruiker);
+        Toegelaten = DALUsers.Check(gebruiker);
         return Toegelaten;
     }
 
-    public List<User> selectgebruiker(string g)
+    public List<User> selectgebruiker(int g_id)
     {
        
-        return DalAddUsers.selectGebruiker(g);
+        return DALUsers.selectGebruiker(g_id);
     }
 
-    public List<User> selectAanwezigen(int id)
+    public List<int> selectgebruikerid(string gebruikersnaam)
     {
-        return DalAddUsers.selectAanwezigen(id);
+        return DALUsers.selectIdGebruiker(gebruikersnaam);
     }
+
+   
 }
