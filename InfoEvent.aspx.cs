@@ -58,6 +58,7 @@ public partial class InfoEvent : System.Web.UI.Page
             Aanwezigen.Add(persoon.voornaam + " " + persoon.naam);
         }
 
+        
 
         rptAanwezig.DataSource = Aanwezigen;
         rptAanwezig.DataBind();
@@ -96,7 +97,7 @@ public partial class InfoEvent : System.Web.UI.Page
                     Aanwezig Aanwezigenqr = LijstAanwezigen[i];
                     QRCodeEncoder encoder = new QRCodeEncoder();
                     Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
-                    img.Save("C:\\Users\\BJAAARN\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+                    img.Save("C:\\Users\\Veerle\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
                     imgQrCode.ImageUrl = "img.jpg";
                 }
             }
@@ -176,5 +177,9 @@ public partial class InfoEvent : System.Web.UI.Page
         Event ActiefEvent = ActiefEventLijst[0];
         Session.Add("Event", ActiefEvent.Id);
         Response.Redirect("~/CreateEvent.aspx");
+    }
+    protected void btnComment_Click(object sender, EventArgs e)
+    {
+
     }
 }

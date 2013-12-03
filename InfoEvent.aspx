@@ -52,7 +52,31 @@
             </FooterTemplate>
         </asp:Repeater>
     <asp:Image ID="imgQrCode" runat="server" />
-    
+    <br />
+
+    <asp:Repeater ID="rptComments" runat="server" DataSourceID="">
+            <HeaderTemplate>
+                <table class="table table-striped">
+            </HeaderTemplate>
+
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <%# Container.DataItem %>
+                    </td>
+                    
+                </tr>
+            </ItemTemplate>
+
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
+        </asp:Repeater>
+    <br />
+    <asp:TextBox ID="CommentBox" runat="server" ReadOnly="False" Height="300" Width="300" Wrap="True" TextMode="MultiLine"></asp:TextBox>
+    <br />
+    <asp:Button ID="btnComment" runat="server" CssClass="btn" OnClick="btnComment_Click" Text="Post" />
+
     <br />
     <asp:Button ID="btnAfwezig" runat="server" Text="Aanwezig" CssClass="btn" OnClick="btnAfwezig_Click" />
 
