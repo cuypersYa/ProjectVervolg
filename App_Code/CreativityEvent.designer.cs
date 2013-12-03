@@ -1153,7 +1153,7 @@ public partial class Aanwezig : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comments")]
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comment")]
 public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
@@ -1165,13 +1165,13 @@ public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private System.DateTime _datum;
 	
-	private int _eventId;
-	
 	private int _persoonId;
 	
-	private EntityRef<Event> _Event;
+	private int _eventId;
 	
 	private EntityRef<User> _User;
+	
+	private EntityRef<Event> _Event;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1183,20 +1183,20 @@ public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OncommentTekstChanged();
     partial void OndatumChanging(System.DateTime value);
     partial void OndatumChanged();
-    partial void OneventIdChanging(int value);
-    partial void OneventIdChanged();
     partial void OnpersoonIdChanging(int value);
     partial void OnpersoonIdChanged();
+    partial void OneventIdChanging(int value);
+    partial void OneventIdChanged();
     #endregion
 	
 	public Comment()
 	{
-		this._Event = default(EntityRef<Event>);
 		this._User = default(EntityRef<User>);
+		this._Event = default(EntityRef<Event>);
 		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 	public int Id
 	{
 		get
@@ -1256,30 +1256,6 @@ public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventId", DbType="Int NOT NULL")]
-	public int eventId
-	{
-		get
-		{
-			return this._eventId;
-		}
-		set
-		{
-			if ((this._eventId != value))
-			{
-				if (this._Event.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OneventIdChanging(value);
-				this.SendPropertyChanging();
-				this._eventId = value;
-				this.SendPropertyChanged("eventId");
-				this.OneventIdChanged();
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_persoonId", DbType="Int NOT NULL")]
 	public int persoonId
 	{
@@ -1304,36 +1280,26 @@ public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event_Comment", Storage="_Event", ThisKey="eventId", OtherKey="Id", IsForeignKey=true)]
-	public Event Event
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventId", DbType="Int NOT NULL")]
+	public int eventId
 	{
 		get
 		{
-			return this._Event.Entity;
+			return this._eventId;
 		}
 		set
 		{
-			Event previousValue = this._Event.Entity;
-			if (((previousValue != value) 
-						|| (this._Event.HasLoadedOrAssignedValue == false)))
+			if ((this._eventId != value))
 			{
+				if (this._Event.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OneventIdChanging(value);
 				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Event.Entity = null;
-					previousValue.Comments.Remove(this);
-				}
-				this._Event.Entity = value;
-				if ((value != null))
-				{
-					value.Comments.Add(this);
-					this._eventId = value.Id;
-				}
-				else
-				{
-					this._eventId = default(int);
-				}
-				this.SendPropertyChanged("Event");
+				this._eventId = value;
+				this.SendPropertyChanged("eventId");
+				this.OneventIdChanged();
 			}
 		}
 	}
@@ -1368,6 +1334,40 @@ public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
 					this._persoonId = default(int);
 				}
 				this.SendPropertyChanged("User");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event_Comment", Storage="_Event", ThisKey="eventId", OtherKey="Id", IsForeignKey=true)]
+	public Event Event
+	{
+		get
+		{
+			return this._Event.Entity;
+		}
+		set
+		{
+			Event previousValue = this._Event.Entity;
+			if (((previousValue != value) 
+						|| (this._Event.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Event.Entity = null;
+					previousValue.Comments.Remove(this);
+				}
+				this._Event.Entity = value;
+				if ((value != null))
+				{
+					value.Comments.Add(this);
+					this._eventId = value.Id;
+				}
+				else
+				{
+					this._eventId = default(int);
+				}
+				this.SendPropertyChanged("Event");
 			}
 		}
 	}

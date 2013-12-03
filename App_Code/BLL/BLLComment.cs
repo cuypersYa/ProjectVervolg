@@ -15,8 +15,8 @@ public class BLLComment
         DALComments.insert(c_ev);
     }
 
-    public List<Comment> selectAll(int comment_id)
+    public List<Comment> selectAll(int e_ev)
     {
-        return DALComments.selectAll(comment_id);
+        return DALComments.selectAll(e_ev);
     }
 }

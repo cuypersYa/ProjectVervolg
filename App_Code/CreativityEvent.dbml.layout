@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CreativityEvent">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 8.5" name="CreativityEvent">
   <DataContextMoniker Name="/CreativityEventDataContext" />
   <nestedChildShapes>
     <classShape Id="2aa58b50-b402-4d8b-9c6f-e792282083a3" absoluteBounds="0.75, 2.125, 2, 2.1554996744791661">
@@ -27,7 +27,7 @@
         <elementListCompartment Id="4aa08683-71c5-4284-a9c2-4144f6d465c4" absoluteBounds="3.2649999999999997, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.609375 : 4.25); (4.609375 : 2.27089680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.609375 : 4.25); (4.609375 : 2.27089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CreativityEventDataContext/Event/Event_Spreker" />
       <nodes>
         <classShapeMoniker Id="1dbb5d74-67cc-4d80-9573-559c6a221090" />
@@ -40,7 +40,7 @@
         <elementListCompartment Id="94f0c405-497f-455b-bd5a-13ad35f3a4fc" absoluteBounds="5.765, 2.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.40625 : 4.25); (5.40625 : 2.83099609375); (5.75 : 2.83099609375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.40625 : 4.25); (5.40625 : 2.83099609375); (5.75 : 2.83099609375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CreativityEventDataContext/Event/Event_Aanwezig" />
       <nodes>
         <classShapeMoniker Id="1dbb5d74-67cc-4d80-9573-559c6a221090" />
@@ -54,24 +54,24 @@
         <classShapeMoniker Id="a8fd2de6-ec16-4ede-8084-ddac5acbfc63" />
       </nodes>
     </associationConnector>
-    <classShape Id="c552a297-da65-4dc2-b58c-53588ed87f06" absoluteBounds="7.625, 4.25, 2, 1.7708968098958331">
+    <classShape Id="725deb30-c643-49e2-97df-e683c0733b2b" absoluteBounds="9, 4.625, 2, 1.7708968098958331">
       <DataClassMoniker Name="/CreativityEventDataContext/Comment" />
       <nestedChildShapes>
-        <elementListCompartment Id="a5c01c96-44df-4d77-8664-7743e0c93145" absoluteBounds="7.64, 4.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="00a94cf1-971d-4920-b79b-5675678d030f" absoluteBounds="9.015, 5.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 5.13544840494792); (7.625 : 5.13544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/CreativityEventDataContext/Event/Event_Comment" />
-      <nodes>
-        <classShapeMoniker Id="1dbb5d74-67cc-4d80-9573-559c6a221090" />
-        <classShapeMoniker Id="c552a297-da65-4dc2-b58c-53588ed87f06" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.65128329003906); (4.52604166666667 : 3.65128329003906 : JumpStart); (4.69270833333333 : 3.65128329003906 : JumpEnd); (5.32291666666667 : 3.65128329003906 : JumpStart); (5.48958333333333 : 3.65128329003906 : JumpEnd); (8.71875 : 3.65128329003906); (8.71875 : 4.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 3.65128329003906); (4.52604166666667 : 3.65128329003906 : JumpStart); (4.69270833333333 : 3.65128329003906 : JumpEnd); (5.32291666666667 : 3.65128329003906 : JumpStart); (5.48958333333333 : 3.65128329003906 : JumpEnd); (10 : 3.65128329003906); (10 : 4.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CreativityEventDataContext/User/User_Comment" />
       <nodes>
         <classShapeMoniker Id="2aa58b50-b402-4d8b-9c6f-e792282083a3" />
-        <classShapeMoniker Id="c552a297-da65-4dc2-b58c-53588ed87f06" />
+        <classShapeMoniker Id="725deb30-c643-49e2-97df-e683c0733b2b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 5.51044840494792); (9 : 5.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CreativityEventDataContext/Event/Event_Comment" />
+      <nodes>
+        <classShapeMoniker Id="1dbb5d74-67cc-4d80-9573-559c6a221090" />
+        <classShapeMoniker Id="725deb30-c643-49e2-97df-e683c0733b2b" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

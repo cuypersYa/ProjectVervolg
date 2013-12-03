@@ -16,9 +16,9 @@ public class DALComment
         dc.SubmitChanges();
     }
 
-    public List<Comment> selectAll(int comment_id)
+    public List<Comment> selectAll(int e_id)
     {
-        var query = (from u in dc.Comments where u.Id == comment_id select u).ToList();
+        var query = (from u in dc.Comments where u.eventId == e_id select u).ToList();
         return query;
     }
 }

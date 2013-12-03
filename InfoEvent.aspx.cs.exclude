@@ -22,7 +22,6 @@ public partial class InfoEvent : System.Web.UI.Page
     BLLAanwezig BLLAanwezig = new BLLAanwezig();
     BLLUser BLLUser = new BLLUser();
     BLLSpreker BLLSpreker = new BLLSpreker();
-    BLLComment BLLComment = new BLLComment();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -76,7 +75,7 @@ public partial class InfoEvent : System.Web.UI.Page
             LijstSprekers.Add(Spreker.naam + " " + Spreker.begintijd + " " + Spreker.eindtijd);
         }
 
-
+        
         rptSprekers.DataSource = LijstSprekers;
         rptSprekers.DataBind();
 
@@ -108,19 +107,6 @@ public partial class InfoEvent : System.Web.UI.Page
                 imgQrCode.Visible = false;
             }
         }
-
-        //reacties laden
-        List<Comment> LijstComment = BLLComment.selectAll(eventId);
-        List<string> Comments = new List<string>();
-        foreach (Comment row in LijstComment)
-        {
-            List<User> persoonlijst = BLLUser.selectgebruiker(row.persoonId);
-            User persoon = persoonlijst[0];
-            string naam = persoon.voornaam + " " + persoon.naam;
-            Comments.Add(naam + " " + row.commentTekst + " " + row.datum);
-        }
-        rptComments.DataSource = Comments;
-        rptComments.DataBind();
 
         Session["timeout"] = ActiefEvent.datum;
     }
@@ -202,18 +188,5 @@ public partial class InfoEvent : System.Web.UI.Page
         eventId = (int)(Session["eventid"]);
         BLLEvent.delete(eventId);
         Response.Redirect("~/Home.aspx");
-    }
-    protected void btnComment_Click(object sender, EventArgs e)
-    {
-        eventId = (int)(Session["eventid"]);
-        gebruikerid = (int)(Session["gebruikersid"]);
-        Comment reactie = new Comment();
-        reactie.commentTekst = CommentBox.Text;
-        reactie.datum = DateTime.Now;
-        reactie.eventId = eventId;
-        reactie.persoonId = gebruikerid;
-        BLLComment.insert(reactie);
-        CommentBox.Text = "";
-        Response.Redirect(Request.RawUrl);
     }
 }
