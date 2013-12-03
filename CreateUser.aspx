@@ -4,7 +4,8 @@
     <title>Created Events</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderId="ContentHeadCenter" runat="server">
-
+    
+       
      <div class="page-header">
         <asp:Label ID="lblUser" runat="server" CssClass="h1"> Registreer u hier!</asp:Label>
     </div>
@@ -34,7 +35,7 @@
         <asp:TextBox ID="txtWachtwoord" runat="server" TextMode="Password"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvLeeg4" runat="server" ControlToValidate="txtWachtwoord" ErrorMessage="Mag niet leeg blijven"></asp:RequiredFieldValidator>
         <br />
-
+        
         <asp:Label ID="lblWachtwoord2" runat="server" AssociatedControlID="txtWachtwoord2" Text="Herhaal wachtwoord"></asp:Label>
         <asp:TextBox ID="txtWachtwoord2" runat="server" TextMode="Password"></asp:TextBox>
         <asp:CompareValidator ID="cvWachtwoord" runat="server" ControlToCompare="txtWachtwoord" ControlToValidate="txtWachtwoord2" ErrorMessage="Wachtwoord komt niet overeen"></asp:CompareValidator>
