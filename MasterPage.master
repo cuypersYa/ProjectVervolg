@@ -25,8 +25,10 @@
             </div>
           </div>
         </div>
+        <div class="container">
         <asp:ContentPlaceHolder id="ContentHeadCenter" runat="server">
         </asp:ContentPlaceHolder>
+        </div>
     </div>
     <div id="footer">
       <div class="container">
