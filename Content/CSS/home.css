@@ -8,3 +8,23 @@
     clear:both;
     margin-top:50px;
 }
+/*.floatLeft {
+    float:left;
+}*/
+.floatRight {
+    float:right;
+    margin-left:20px;
+}
+#subtitle {
+    text-align: center;
+}
+.center {
+    text-align:center;
+
+}
+.signIn {
+    max-width:300px;
+}
+form-horizontal {
+    width:300px;
+}

@@ -25,8 +25,17 @@
             </div>
           </div>
         </div>
+        <div class="container">
         <asp:ContentPlaceHolder id="ContentHeadCenter" runat="server">
         </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    <div id="footer">
+      <div class="container">
+          <div class="center">
+            <p class="text-muted credit">Gemaakt door <a href="http://www.bjorntruyen.be">Bjorn Truyen</a>,<a href="http://yannickcuypers.be">Yannick Cuypers</a> and <a href="https://www.facebook.com/axel.verstappen?fref=ts">Axel Verstappen</a>.</p>
+          </div>
+      </div>
     </div>
     </form>
 </body>

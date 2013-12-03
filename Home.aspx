@@ -5,9 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderId="ContentHeadCenter" runat="server">
     <div class="page-header">
-        <asp:Label ID="lblUser" runat="server" Text="User"></asp:Label>
+        
         <br />
-        <asp:Label ID="lblTest" runat="server" Text="Label"  CssClass="h1"></asp:Label>
+        <asp:Label ID="lblWelkom" runat="server" Text="Label"  CssClass="h1"></asp:Label>
         <br />
      </div> 
         <br />
@@ -23,7 +23,7 @@
                      <asp:LinkButton ID="btnInfoEvent" OnClick="btnInfoEvent_Click" CommandArgument='<%# Eval("id") %>' runat="server" CssClass="h4">   <%# Eval("naam") %></asp:LinkButton>
                     </td>
                     <td>
-                        <%# Eval("datum") %>
+                        <%# Eval("Datum", "{0:d}")%>
                     </td>
                     <td>
                         <%# Eval("visitors") %>

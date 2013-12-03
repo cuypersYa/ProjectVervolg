@@ -31,8 +31,7 @@ public partial class Home : System.Web.UI.Page
         
         IList<User> userLijst = BLLUser.selectgebruiker(gebruikerid);
         User user = userLijst[0];
-        lblUser.Text = user.gebruikersnaam;
-        lblTest.Text = "Welkom " + user.voornaam;
+        lblWelkom.Text = "Welkom " + user.voornaam;
 
         if (user.rol == "gewoon")
         {

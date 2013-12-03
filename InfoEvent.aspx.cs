@@ -43,10 +43,12 @@ public partial class InfoEvent : System.Web.UI.Page
         if (user.Id == ActiefEvent.eigenaar)
         {
             btnEdit.Visible = true;
+            btnVerwijder.Visible = true;
         }
         else
         {
             btnEdit.Visible = false;
+            btnVerwijder.Visible = false;
         }
 
 
@@ -97,7 +99,11 @@ public partial class InfoEvent : System.Web.UI.Page
                     Aanwezig Aanwezigenqr = LijstAanwezigen[i];
                     QRCodeEncoder encoder = new QRCodeEncoder();
                     Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
+<<<<<<< HEAD
                     img.Save("C:\\Users\\Veerle\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+=======
+                    img.Save("C:\\Users\\yannickcuypers01\\Documents\\Visual Studio 2012\\Projects\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+>>>>>>> 4f904f4d6baa2f9dbccc22ea432251eb1856821e
                     imgQrCode.ImageUrl = "img.jpg";
                 }
             }
@@ -178,8 +184,16 @@ public partial class InfoEvent : System.Web.UI.Page
         Session.Add("Event", ActiefEvent.Id);
         Response.Redirect("~/CreateEvent.aspx");
     }
+<<<<<<< HEAD
     protected void btnComment_Click(object sender, EventArgs e)
     {
 
+=======
+    protected void btnVerwijder_Click(object sender, EventArgs e)
+    {
+        eventId = (int)(Session["eventid"]);
+        BLLEvent.delete(eventId);
+        Response.Redirect("~/Home.aspx");
+>>>>>>> 4f904f4d6baa2f9dbccc22ea432251eb1856821e
     }
 }
