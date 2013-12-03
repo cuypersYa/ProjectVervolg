@@ -12,7 +12,7 @@
      </div> 
         <br />
         <br />
-        <asp:Repeater ID="rptEvents" runat="server" DataSourceID="ObjdsEvents">
+        <asp:Repeater ID="rptEvents" runat="server">
             <HeaderTemplate>
                 <table class="table table-striped">
             </HeaderTemplate>

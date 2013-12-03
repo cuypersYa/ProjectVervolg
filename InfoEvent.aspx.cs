@@ -48,7 +48,7 @@ public partial class InfoEvent : System.Web.UI.Page
         {
             btnEdit.Visible = false;
         }
-        
+
 
         foreach (int row in Events)
         {
@@ -56,13 +56,13 @@ public partial class InfoEvent : System.Web.UI.Page
             List<User> TussenAanwezig = BLLUser.selectgebruiker(id);
             User persoon = TussenAanwezig[0];
             Aanwezigen.Add(persoon.voornaam + " " + persoon.naam);
-        } 
+        }
 
 
         rptAanwezig.DataSource = Aanwezigen;
         rptAanwezig.DataBind();
 
-        
+
         List<Spreker> Sprekers = BLLSpreker.selectAll(eventId);
         List<string> LijstSprekers = new List<string>();
         List<string> LijstTijd = new List<string>();
@@ -73,38 +73,17 @@ public partial class InfoEvent : System.Web.UI.Page
             LijstSprekers.Add(Spreker.naam + " " + Spreker.begintijd + " " + Spreker.eindtijd);
         }
 
+        
         rptSprekers.DataSource = LijstSprekers;
         rptSprekers.DataBind();
 
-        
+
         List<Aanwezig> LijstAanwezigen = new List<Aanwezig>();
         LijstAanwezigen = BLLAanwezig.SelectAlleAanwezige(eventId);
         List<System.Drawing.Image> LijstQR = new List<System.Drawing.Image>();
 
-<<<<<<< HEAD
-
-        for (int i = 0; i < LijstAanwezigen.Count(); i++)
-        {
-            Aanwezig Aanwezigenqr = LijstAanwezigen[i];
-            QRCodeEncoder encoder = new QRCodeEncoder();
-            Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
-            img.Save("C:\\Users\\Veerle\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
-            imgQrCode.ImageUrl = "img.jpg";
-        }
-       
-    }
-    protected void btnAfwezig_Click(object sender, EventArgs e)
-    {
-        BLLAanwezig BllAanwezige = new BLLAanwezig();
-        BLLUser BllUser = new BLLUser();
-        BLLEvent BllEvent = new BLLEvent();
-        List<Aanwezig> LijstAanwezigen = new List<Aanwezig>();
-        LijstAanwezigen = BllAanwezige.SelectAlleAanwezige(eventId);
-
-=======
->>>>>>> ba6233c0137ca34d3a2a924d634ecfb308a0e6b3
         eventId = (int)(Session["eventid"]);
-        List <User> AanwezigeLijst = BLLUser.selectgebruiker(user.Id);
+        List<User> AanwezigeLijst = BLLUser.selectgebruiker(user.Id);
         User Aanwezige = AanwezigeLijst[0];
 
         foreach (Aanwezig row in LijstAanwezigen)
@@ -128,7 +107,7 @@ public partial class InfoEvent : System.Web.UI.Page
         }
 
         Session["timeout"] = ActiefEvent.datum;
-     }
+    }
     protected void btnAfwezig_Click(object sender, EventArgs e)
     {
         eventId = (int)(Session["eventid"]);
@@ -140,7 +119,7 @@ public partial class InfoEvent : System.Web.UI.Page
             List<Aanwezig> LijstAanwezigen = new List<Aanwezig>();
             LijstAanwezigen = BLLAanwezig.SelectAlleAanwezige(eventId);
 
-            
+
             List<User> AanwezigeLijst = BLLUser.selectgebruiker(user.Id);
             User Aanwezige = AanwezigeLijst[0];
 
@@ -155,11 +134,11 @@ public partial class InfoEvent : System.Web.UI.Page
 
                 }
             }
-            
+
         }
         else
         {
-            
+
             IList<User> gebruikerlijst = BLLUser.selectgebruiker(user.Id);
             User gebruikers = gebruikerlijst[0];
 
@@ -168,14 +147,14 @@ public partial class InfoEvent : System.Web.UI.Page
             aanwezigmaak.EventId = eventId;
             aanwezigmaak.PersoonId = gebruikers.Id;
             aanwezigmaak.qrcode = gebruikers.Id + gebruikers.naam + eventId;
-                
+
             BLLAanwezig.insert(aanwezigmaak);
             BLLEvent.aanwezig(eventId);
             btnAfwezig.Text = "Afwezig";
             Response.Redirect("~/Home.aspx");
         }
 
-    
+
     }
 
     protected void Timer(object sender, EventArgs e)
@@ -187,7 +166,7 @@ public partial class InfoEvent : System.Web.UI.Page
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Days).ToString() + " days " +
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Hours).ToString() + " hours " +
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Minutes).ToString() + " mintues " +
-            ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Seconds).ToString() +" seconds ";
+            ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Seconds).ToString() + " seconds ";
         }
     }
     protected void btnEdit_Click(object sender, EventArgs e)
