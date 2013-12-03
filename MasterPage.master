@@ -30,7 +30,9 @@
     </div>
     <div id="footer">
       <div class="container">
-        <p class="text-muted credit">Gemaakt door <a href="http://bjorntruyen.be">Bjorn Truyen</a>,<a href="http://yannickcuypers.be">Yannick Cuypers</a> and <a href="https://www.facebook.com/axel.verstappen?fref=ts">Axel Verstappen</a>.</p>
+          <div class="center">
+            <p class="text-muted credit">Gemaakt door <a href="http://www.bjorntruyen.be">Bjorn Truyen</a>,<a href="http://yannickcuypers.be">Yannick Cuypers</a> and <a href="https://www.facebook.com/axel.verstappen?fref=ts">Axel Verstappen</a>.</p>
+          </div>
       </div>
     </div>
     </form>
