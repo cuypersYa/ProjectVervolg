@@ -100,7 +100,11 @@ public partial class InfoEvent : System.Web.UI.Page
                     QRCodeEncoder encoder = new QRCodeEncoder();
                     Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
 <<<<<<< HEAD
+<<<<<<< HEAD
                     img.Save("C:\\Users\\Veerle\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+=======
+                    img.Save("C:\\Users\\yannickcuypers01\\Documents\\Visual Studio 2012\\Projects\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+>>>>>>> 4f904f4d6baa2f9dbccc22ea432251eb1856821e
 =======
                     img.Save("C:\\Users\\yannickcuypers01\\Documents\\Visual Studio 2012\\Projects\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
 >>>>>>> 4f904f4d6baa2f9dbccc22ea432251eb1856821e
@@ -185,15 +189,21 @@ public partial class InfoEvent : System.Web.UI.Page
         Response.Redirect("~/CreateEvent.aspx");
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     protected void btnComment_Click(object sender, EventArgs e)
     {
 
 =======
+=======
+>>>>>>> 4f904f4d6baa2f9dbccc22ea432251eb1856821e
     protected void btnVerwijder_Click(object sender, EventArgs e)
     {
         eventId = (int)(Session["eventid"]);
         BLLEvent.delete(eventId);
         Response.Redirect("~/Home.aspx");
+<<<<<<< HEAD
+>>>>>>> 4f904f4d6baa2f9dbccc22ea432251eb1856821e
+=======
 >>>>>>> 4f904f4d6baa2f9dbccc22ea432251eb1856821e
     }
 }
