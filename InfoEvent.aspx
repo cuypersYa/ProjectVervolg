@@ -58,6 +58,8 @@
 
     <asp:Button ID="btnEdit" runat="server" CssClass="btn" OnClick="btnEdit_Click" Text="Edit" />
 
+    <asp:Button ID="btnVerwijder" runat="server" CssClass="btn" OnClick="btnVerwijder_Click" Text="Verwijder" Visible="False" />
+
     <div>
         <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
         <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="Timer"></asp:Timer>

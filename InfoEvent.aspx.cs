@@ -43,10 +43,12 @@ public partial class InfoEvent : System.Web.UI.Page
         if (user.Id == ActiefEvent.eigenaar)
         {
             btnEdit.Visible = true;
+            btnVerwijder.Visible = true;
         }
         else
         {
             btnEdit.Visible = false;
+            btnVerwijder.Visible = false;
         }
 
 
@@ -176,5 +178,11 @@ public partial class InfoEvent : System.Web.UI.Page
         Event ActiefEvent = ActiefEventLijst[0];
         Session.Add("Event", ActiefEvent.Id);
         Response.Redirect("~/CreateEvent.aspx");
+    }
+    protected void btnVerwijder_Click(object sender, EventArgs e)
+    {
+        eventId = (int)(Session["eventid"]);
+        BLLEvent.delete(eventId);
+        Response.Redirect("~/Home.aspx");
     }
 }
