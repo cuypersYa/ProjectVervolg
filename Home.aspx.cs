@@ -43,8 +43,8 @@ public partial class Home : System.Web.UI.Page
             btnAlleenAdmin.Visible = false;
         }
         List<Event> AllEvents = BLLEvent.SelectAllEvents();
-        rptEvents.DataSource = AllEvents;
-
+        rptEvents.DataSource = AllEvents.OrderBy(x => x.datum);
+        rptEvents.DataBind();
        }
  
     protected void btnInfoEvent_Click(object sender, EventArgs e)
