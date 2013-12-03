@@ -11,6 +11,7 @@
       <Column Name="rol" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="User_Event" Member="Events" ThisKey="Id" OtherKey="eigenaar" Type="Event" />
       <Association Name="User_Aanwezig" Member="Aanwezigs" ThisKey="Id" OtherKey="PersoonId" Type="Aanwezig" />
+      <Association Name="User_Comment" Member="Comments" ThisKey="Id" OtherKey="persoonId" Type="Comment" />
     </Type>
   </Table>
   <Table Name="dbo.Events" Member="Events">
@@ -24,6 +25,7 @@
       <Column Name="sprekers" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Association Name="Event_Spreker" Member="Sprekers1" ThisKey="Id" OtherKey="event_id" Type="Spreker" />
       <Association Name="Event_Aanwezig" Member="Aanwezigs" ThisKey="Id" OtherKey="EventId" Type="Aanwezig" />
+      <Association Name="Event_Comment" Member="Comments" ThisKey="Id" OtherKey="eventId" Type="Comment" />
       <Association Name="User_Event" Member="User" ThisKey="eigenaar" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
@@ -45,6 +47,17 @@
       <Column Name="qrcode" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="Event_Aanwezig" Member="Event" ThisKey="EventId" OtherKey="Id" Type="Event" IsForeignKey="true" />
       <Association Name="User_Aanwezig" Member="User" ThisKey="PersoonId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comments" Member="Comments">
+    <Type Name="Comment">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="commentTekst" Type="System.String" DbType="VarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="datum" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="eventId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="persoonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Event_Comment" Member="Event" ThisKey="eventId" OtherKey="Id" Type="Event" IsForeignKey="true" />
+      <Association Name="User_Comment" Member="User" ThisKey="persoonId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

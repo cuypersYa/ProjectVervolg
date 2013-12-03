@@ -41,6 +41,9 @@ public partial class CreativityEventDataContext : System.Data.Linq.DataContext
   partial void InsertAanwezig(Aanwezig instance);
   partial void UpdateAanwezig(Aanwezig instance);
   partial void DeleteAanwezig(Aanwezig instance);
+  partial void InsertComment(Comment instance);
+  partial void UpdateComment(Comment instance);
+  partial void DeleteComment(Comment instance);
   #endregion
 	
 	public CreativityEventDataContext() : 
@@ -104,6 +107,14 @@ public partial class CreativityEventDataContext : System.Data.Linq.DataContext
 			return this.GetTable<Aanwezig>();
 		}
 	}
+	
+	public System.Data.Linq.Table<Comment> Comments
+	{
+		get
+		{
+			return this.GetTable<Comment>();
+		}
+	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
@@ -130,6 +141,8 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private EntitySet<Aanwezig> _Aanwezigs;
 	
+	private EntitySet<Comment> _Comments;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -154,6 +167,7 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this._Events = new EntitySet<Event>(new Action<Event>(this.attach_Events), new Action<Event>(this.detach_Events));
 		this._Aanwezigs = new EntitySet<Aanwezig>(new Action<Aanwezig>(this.attach_Aanwezigs), new Action<Aanwezig>(this.detach_Aanwezigs));
+		this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
 		OnCreated();
 	}
 	
@@ -323,6 +337,19 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Comment", Storage="_Comments", ThisKey="Id", OtherKey="persoonId")]
+	public EntitySet<Comment> Comments
+	{
+		get
+		{
+			return this._Comments;
+		}
+		set
+		{
+			this._Comments.Assign(value);
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -366,6 +393,18 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		this.SendPropertyChanging();
 		entity.User = null;
 	}
+	
+	private void attach_Comments(Comment entity)
+	{
+		this.SendPropertyChanging();
+		entity.User = this;
+	}
+	
+	private void detach_Comments(Comment entity)
+	{
+		this.SendPropertyChanging();
+		entity.User = null;
+	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Events")]
@@ -391,6 +430,8 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 	private EntitySet<Spreker> _Sprekers1;
 	
 	private EntitySet<Aanwezig> _Aanwezigs;
+	
+	private EntitySet<Comment> _Comments;
 	
 	private EntityRef<User> _User;
 	
@@ -418,6 +459,7 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this._Sprekers1 = new EntitySet<Spreker>(new Action<Spreker>(this.attach_Sprekers1), new Action<Spreker>(this.detach_Sprekers1));
 		this._Aanwezigs = new EntitySet<Aanwezig>(new Action<Aanwezig>(this.attach_Aanwezigs), new Action<Aanwezig>(this.detach_Aanwezigs));
+		this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
 		this._User = default(EntityRef<User>);
 		OnCreated();
 	}
@@ -592,6 +634,19 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event_Comment", Storage="_Comments", ThisKey="Id", OtherKey="eventId")]
+	public EntitySet<Comment> Comments
+	{
+		get
+		{
+			return this._Comments;
+		}
+		set
+		{
+			this._Comments.Assign(value);
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Event", Storage="_User", ThisKey="eigenaar", OtherKey="Id", IsForeignKey=true)]
 	public User User
 	{
@@ -665,6 +720,18 @@ public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 	
 	private void detach_Aanwezigs(Aanwezig entity)
+	{
+		this.SendPropertyChanging();
+		entity.Event = null;
+	}
+	
+	private void attach_Comments(Comment entity)
+	{
+		this.SendPropertyChanging();
+		entity.Event = this;
+	}
+	
+	private void detach_Comments(Comment entity)
 	{
 		this.SendPropertyChanging();
 		entity.Event = null;
@@ -1059,6 +1126,246 @@ public partial class Aanwezig : INotifyPropertyChanging, INotifyPropertyChanged
 				else
 				{
 					this._PersoonId = default(int);
+				}
+				this.SendPropertyChanged("User");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comments")]
+public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private string _commentTekst;
+	
+	private System.DateTime _datum;
+	
+	private int _eventId;
+	
+	private int _persoonId;
+	
+	private EntityRef<Event> _Event;
+	
+	private EntityRef<User> _User;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OncommentTekstChanging(string value);
+    partial void OncommentTekstChanged();
+    partial void OndatumChanging(System.DateTime value);
+    partial void OndatumChanged();
+    partial void OneventIdChanging(int value);
+    partial void OneventIdChanged();
+    partial void OnpersoonIdChanging(int value);
+    partial void OnpersoonIdChanged();
+    #endregion
+	
+	public Comment()
+	{
+		this._Event = default(EntityRef<Event>);
+		this._User = default(EntityRef<User>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_commentTekst", DbType="VarChar(400) NOT NULL", CanBeNull=false)]
+	public string commentTekst
+	{
+		get
+		{
+			return this._commentTekst;
+		}
+		set
+		{
+			if ((this._commentTekst != value))
+			{
+				this.OncommentTekstChanging(value);
+				this.SendPropertyChanging();
+				this._commentTekst = value;
+				this.SendPropertyChanged("commentTekst");
+				this.OncommentTekstChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_datum", DbType="Date NOT NULL")]
+	public System.DateTime datum
+	{
+		get
+		{
+			return this._datum;
+		}
+		set
+		{
+			if ((this._datum != value))
+			{
+				this.OndatumChanging(value);
+				this.SendPropertyChanging();
+				this._datum = value;
+				this.SendPropertyChanged("datum");
+				this.OndatumChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_eventId", DbType="Int NOT NULL")]
+	public int eventId
+	{
+		get
+		{
+			return this._eventId;
+		}
+		set
+		{
+			if ((this._eventId != value))
+			{
+				if (this._Event.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OneventIdChanging(value);
+				this.SendPropertyChanging();
+				this._eventId = value;
+				this.SendPropertyChanged("eventId");
+				this.OneventIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_persoonId", DbType="Int NOT NULL")]
+	public int persoonId
+	{
+		get
+		{
+			return this._persoonId;
+		}
+		set
+		{
+			if ((this._persoonId != value))
+			{
+				if (this._User.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnpersoonIdChanging(value);
+				this.SendPropertyChanging();
+				this._persoonId = value;
+				this.SendPropertyChanged("persoonId");
+				this.OnpersoonIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event_Comment", Storage="_Event", ThisKey="eventId", OtherKey="Id", IsForeignKey=true)]
+	public Event Event
+	{
+		get
+		{
+			return this._Event.Entity;
+		}
+		set
+		{
+			Event previousValue = this._Event.Entity;
+			if (((previousValue != value) 
+						|| (this._Event.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Event.Entity = null;
+					previousValue.Comments.Remove(this);
+				}
+				this._Event.Entity = value;
+				if ((value != null))
+				{
+					value.Comments.Add(this);
+					this._eventId = value.Id;
+				}
+				else
+				{
+					this._eventId = default(int);
+				}
+				this.SendPropertyChanged("Event");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Comment", Storage="_User", ThisKey="persoonId", OtherKey="Id", IsForeignKey=true)]
+	public User User
+	{
+		get
+		{
+			return this._User.Entity;
+		}
+		set
+		{
+			User previousValue = this._User.Entity;
+			if (((previousValue != value) 
+						|| (this._User.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._User.Entity = null;
+					previousValue.Comments.Remove(this);
+				}
+				this._User.Entity = value;
+				if ((value != null))
+				{
+					value.Comments.Add(this);
+					this._persoonId = value.Id;
+				}
+				else
+				{
+					this._persoonId = default(int);
 				}
 				this.SendPropertyChanged("User");
 			}
