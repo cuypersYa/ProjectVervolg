@@ -81,6 +81,28 @@ public partial class InfoEvent : System.Web.UI.Page
         LijstAanwezigen = BLLAanwezig.SelectAlleAanwezige(eventId);
         List<System.Drawing.Image> LijstQR = new List<System.Drawing.Image>();
 
+<<<<<<< HEAD
+
+        for (int i = 0; i < LijstAanwezigen.Count(); i++)
+        {
+            Aanwezig Aanwezigenqr = LijstAanwezigen[i];
+            QRCodeEncoder encoder = new QRCodeEncoder();
+            Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
+            img.Save("C:\\Users\\Veerle\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+            imgQrCode.ImageUrl = "img.jpg";
+        }
+       
+    }
+    protected void btnAfwezig_Click(object sender, EventArgs e)
+    {
+        BLLAanwezig BllAanwezige = new BLLAanwezig();
+        BLLUser BllUser = new BLLUser();
+        BLLEvent BllEvent = new BLLEvent();
+        List<Aanwezig> LijstAanwezigen = new List<Aanwezig>();
+        LijstAanwezigen = BllAanwezige.SelectAlleAanwezige(eventId);
+
+=======
+>>>>>>> ba6233c0137ca34d3a2a924d634ecfb308a0e6b3
         eventId = (int)(Session["eventid"]);
         List <User> AanwezigeLijst = BLLUser.selectgebruiker(user.Id);
         User Aanwezige = AanwezigeLijst[0];
