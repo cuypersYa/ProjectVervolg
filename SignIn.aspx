@@ -7,13 +7,22 @@
     <div class="jumbotron">
         <br />
       <div class="container">
-        <asp:Label ID="lblGebruikersnaam" runat="server" AssociatedControlID="txtGebruikersnaam" Text="Gebruikersnaam"></asp:Label>
-        <asp:TextBox ID="txtGebruikersnaam" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvGebruiker" ValidationGroup="normalLogin" runat ="server" ControlToValidate="txtGebruikersnaam" ErrorMessage="Dit mag niet leeg blijven" CssClass="alert-danger"></asp:RequiredFieldValidator>
+          <div id="subtitle">
+          <h2 >Ontdek evenementen in de Gym</h2>
+              <br />
+        <div class="center">
+       
+            <img src="Content/img/logoGym.jpg" />
+       <br />
+   
+        <div class="form-horizontal">
         <br />
-        <asp:Label ID="lblWachtwoord" runat="server" AssociatedControlID="txtWachtwoord" Text="Wachtwoord"></asp:Label>
-        <asp:TextBox ID="txtWachtwoord" runat="server" TextMode="Password"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvWachtwoord" ValidationGroup="normalLogin" runat="server" ControlToValidate="txtWachtwoord" ErrorMessage="Dit mag niet leeg blijven" CssClass="alert-danger"></asp:RequiredFieldValidator>
+          <asp:TextBox ID="txtGebruikersnaam" runat="server" Text="Gebruikersnaam" Width="300px"></asp:TextBox>
+          <asp:TextBox ID="txtWachtwoord" runat="server"  Text="Wachtwoord" TextMode="Password" Width="300px" ></asp:TextBox>
+        </div>  
+          <asp:RequiredFieldValidator ID="rfvGebruiker" ValidationGroup="normalLogin" runat ="server" ControlToValidate="txtGebruikersnaam" ErrorMessage="Gebruikersnaam mag niet leeg blijven" CssClass="alert-danger"></asp:RequiredFieldValidator>
+          <asp:RequiredFieldValidator ID="rfvWachtwoord" ValidationGroup="normalLogin" runat="server" ControlToValidate="txtWachtwoord" ErrorMessage="Wachtwoord mag niet leeg blijven" CssClass="alert-danger"></asp:RequiredFieldValidator>    
+       
         <br />
         <asp:Button ID="btnLogin" runat="server" ValidationGroup="normalLogin" OnClick="btnLogin_Click" Text="Log in"  CssClass="btn btn-primary btn-large" />
         
@@ -22,9 +31,10 @@
        <asp:Button ID="btnFacebook" runat="server" Text="Login with FaceBook" OnClick="LoginFacebook" CssClass="btn btn-default" />
        <asp:Button ID="btnTwitter" runat="server" Text="Login with Twitter" OnClick="LoginTwitter" CssClass="btn btn-default"/>
        <asp:Button ID="btnSignup" runat="server" OnClick="btnSignup_Click" Text="Sign up" CssClass="btn btn-default" />
- 
-
         </div>
+            </div>
+        
+    </div>
     </div>
     
 </asp:Content>
