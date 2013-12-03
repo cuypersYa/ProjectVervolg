@@ -35,6 +35,8 @@ public class DALEvent
         dc.SubmitChanges();
     }
 
+
+
     public List<Event> SelectAll()
     {
         var query = (from u in dc.Events
@@ -64,5 +66,17 @@ public class DALEvent
         
         dc.SubmitChanges();
 
+    }
+
+    public void update(Event u_event)
+    {
+        var recordToUpdate = (from e in dc.Events
+                              where e.Id == u_event.Id
+                              select e).Single();
+
+        recordToUpdate.naam = u_event.naam;
+        recordToUpdate.informatie = u_event.informatie;
+        recordToUpdate.datum = u_event.datum;
+        dc.SubmitChanges();
     }
 }

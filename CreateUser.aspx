@@ -21,7 +21,7 @@
         <br />
 
         <asp:Label ID="lblEmail" runat="server" AssociatedControlID="txtEmail" Text="E-mailadres"></asp:Label>
-        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
         <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="Geen geldig e-mailadres" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
         <br />
 

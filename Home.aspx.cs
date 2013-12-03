@@ -57,6 +57,7 @@ public partial class Home : System.Web.UI.Page
     protected void btnMaakEvent_Click(object sender, EventArgs e)
     {
         Session.Add("gebruikersid", gebruikerid);
+        Session.Add("eventid", 0);
         Response.Redirect("~/CreateEvent.aspx");
         
     }

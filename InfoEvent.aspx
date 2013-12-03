@@ -56,6 +56,8 @@
     <br />
     <asp:Button ID="btnAfwezig" runat="server" Text="Aanwezig" CssClass="btn" OnClick="btnAfwezig_Click" />
 
+    <asp:Button ID="btnEdit" runat="server" CssClass="btn" OnClick="btnEdit_Click" Text="Edit" />
+
     <div>
         <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
         <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="Timer"></asp:Timer>

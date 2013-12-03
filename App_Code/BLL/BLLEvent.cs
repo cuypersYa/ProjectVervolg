@@ -25,6 +25,11 @@ public class BLLEvent
         DALEvents.afwezig(p_int);
     }
 
+    public void update(Event e_event)
+    {
+        DALEvents.update(e_event);
+    }
+
     public List<Event> SelectAllEvents()
     {
         return DALEvents.SelectAll();

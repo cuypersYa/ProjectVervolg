@@ -8,20 +8,20 @@
         <asp:Label Text="Maak een nieuw event aan" runat="server"  CssClass="h1"></asp:Label>
     </div>
         <asp:Label ID="lblTitel" runat="server" AssociatedControlID="txtTitel" Text="Titel"></asp:Label>
-        <asp:TextBox ID="txtTitel" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtTitel" AutoPostBack="true" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvTitel" runat="server" ControlToValidate="txtTitel" ErrorMessage="Gelieve dit in te vullen"></asp:RequiredFieldValidator>
             <asp:Label ID="lblFeedbackNaam" runat="server" ></asp:Label>
         <br />
         <asp:Label ID="lblInformatie" runat="server" AssociatedControlID="txtInformatie" Text="Informatie"></asp:Label>
         <br />
-        <asp:TextBox id="txtInformatie" runat="server" TextMode="MultiLine" Height="300" Width="300"></asp:TextBox>
+        <asp:TextBox id="txtInformatie" AutoPostBack="true" runat="server" TextMode="MultiLine" Height="300" Width="300"></asp:TextBox>
 
         <asp:RequiredFieldValidator ID="rfvInformatie" runat="server" ControlToValidate="txtInformatie" ErrorMessage="Gelieve dit in te vullen"></asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="lblSprekers" runat="server" AssociatedControlID="txtSpreker1" Text="Sprekers"></asp:Label>
         <br />
 
-        <asp:TextBox ID="txtSpreker1" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged"></asp:TextBox><asp:TextBox ID="txtBeginTijd1" runat="server" TextMode="Time">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd1" runat="server" TextMode="Time">01:00</asp:TextBox><br />
+     <asp:TextBox ID="txtSpreker1" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged"></asp:TextBox><asp:TextBox ID="txtBeginTijd1" runat="server" TextMode="Time">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd1" runat="server" TextMode="Time">01:00</asp:TextBox><br />
      <asp:TextBox ID="txtSpreker2" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd2" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd2" runat="server" TextMode="Time" Visible="False" >01:00</asp:TextBox><br />
      <asp:TextBox ID="txtSpreker3" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd3" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd3" runat="server" TextMode="Time" Visible="False">01:00</asp:TextBox><br />
      <asp:TextBox ID="txtSpreker4" runat="server" AutoPostBack="true" OnTextChanged="txtSpreker1_TextChanged" Visible="False"></asp:TextBox><asp:TextBox ID="txtBeginTijd4" runat="server" TextMode="Time" Visible="False">00:00</asp:TextBox><asp:TextBox ID="txtEindTijd4" runat="server" TextMode="Time" Visible="False">01:00</asp:TextBox><br />
@@ -37,7 +37,7 @@
 
         <br />
         <asp:Label ID="lblDatum" runat="server" AssociatedControlID="clDatum" Text="Datum"></asp:Label>
-        <asp:Calendar ID="clDatum" runat="server" SelectedDate="10/30/2013 18:03:17" VisibleDate="2013-11-28" ></asp:Calendar>
+        <asp:Calendar ID="clDatum" runat="server" AutoPostBack="true" SelectedDate="10/30/2013 18:03:17" VisibleDate="2013-11-28" ></asp:Calendar>
         <asp:TextBox ID="txtTijd" runat="server" TextMode="Time"></asp:TextBox>
         <br />
         <asp:Label ID="lblFeedbackDatum" runat="server"></asp:Label>

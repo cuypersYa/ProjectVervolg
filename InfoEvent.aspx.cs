@@ -39,6 +39,15 @@ public partial class InfoEvent : System.Web.UI.Page
         lblEventid.Text = Convert.ToString(eventId);
         IList<int> Events = BLLAanwezig.SelectEvent(eventId);
         var Aanwezigen = new List<string>();
+
+        if (user.Id == ActiefEvent.eigenaar)
+        {
+            btnEdit.Visible = true;
+        }
+        else
+        {
+            btnEdit.Visible = false;
+        }
         
 
         foreach (int row in Events)
@@ -158,5 +167,13 @@ public partial class InfoEvent : System.Web.UI.Page
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Minutes).ToString() + " mintues " +
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Seconds).ToString() +" seconds ";
         }
-    }  
+    }
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        eventId = (int)(Session["eventid"]);
+        List<Event> ActiefEventLijst = BLLEvent.SelectEvent(eventId);
+        Event ActiefEvent = ActiefEventLijst[0];
+        Session.Add("Event", ActiefEvent.Id);
+        Response.Redirect("~/CreateEvent.aspx");
+    }
 }
