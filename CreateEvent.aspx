@@ -11,7 +11,7 @@
     <h2><asp:Label ID="lblTitel" runat="server" AssociatedControlID="txtTitel" Text="Titel"></asp:Label></h2>
         <asp:TextBox ID="txtTitel" AutoPostBack="true" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvTitel" runat="server" ControlToValidate="txtTitel" ErrorMessage="Gelieve dit in te vullen"></asp:RequiredFieldValidator>
-            <asp:Label ID="lblFeedbackNaam" runat="server" CssClass="alert-success"></asp:Label>
+            <asp:Label ID="lblFeedbackNaam" runat="server" CssClass="alert-warning"></asp:Label>
         <br />
       <h2><asp:Label ID="lblInformatie" runat="server" AssociatedControlID="txtInformatie" Text="Informatie"></asp:Label></h2>
         
@@ -40,7 +40,7 @@
         <asp:Calendar ID="clDatum" runat="server" AutoPostBack="true" SelectedDate="10/30/2013 18:03:17" VisibleDate="2013-11-28" ></asp:Calendar>
         <asp:TextBox ID="txtTijd" runat="server" TextMode="Time"></asp:TextBox>
         <br />
-        <asp:Label ID="lblFeedbackDatum" runat="server"></asp:Label>
+        <asp:Label ID="lblFeedbackDatum" runat="server" CssClass="alert-warning"></asp:Label>
        `<br />
        <br />
        <asp:Button ID="btnMaak" runat="server" OnClick="btnMaak_Click" Text="Maak aan" CssClass="btn btn-primary btn-large" />
