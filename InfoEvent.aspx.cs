@@ -99,7 +99,7 @@ public partial class InfoEvent : System.Web.UI.Page
                     Aanwezig Aanwezigenqr = LijstAanwezigen[i];
                     QRCodeEncoder encoder = new QRCodeEncoder();
                     Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
-                    img.Save("C:\\Users\\BJAAARN\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+                    img.Save("C:\\Users\\Veerle\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
                     imgQrCode.ImageUrl = "img.jpg";
                 }
             }
@@ -117,7 +117,7 @@ public partial class InfoEvent : System.Web.UI.Page
             List<User> persoonlijst = BLLUser.selectgebruiker(row.persoonId);
             User persoon = persoonlijst[0];
             string naam = persoon.voornaam + " " + persoon.naam;
-            Comments.Add(naam + " " + System.Environment.NewLine + row.commentTekst + " " + row.datum);
+            Comments.Add(naam + "<br />" + row.datum + "<br />" + System.Environment.NewLine + row.commentTekst);
         }
         rptComments.DataSource = Comments;
         rptComments.DataBind();
