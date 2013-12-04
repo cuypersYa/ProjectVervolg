@@ -35,6 +35,7 @@ public partial class SignIn : System.Web.UI.Page
         if (toegelaten == true)
         {
             Session.Add("gebruikersid", gebruikersid);
+            Session.Add("feedback", "");
             Response.Redirect("~/Home.aspx");
         }
         else
@@ -67,7 +68,7 @@ public partial class SignIn : System.Web.UI.Page
         //Facebook
         FaceBookConnect.API_Key = "249728251846520";
         FaceBookConnect.API_Secret = "1d01c361395c681d29ec84ba2a4aedc2";
-
+        lblFeedback.Text = (string)(Session["feedbacklogin"]);
         if (!IsPostBack)
         {
             if (Request.QueryString["error"] == "access_denied")
@@ -148,11 +149,12 @@ public partial class SignIn : System.Web.UI.Page
 
                     newUser.wachtwoord = wachtwoord;
                     newUser.gebruikersnaam = gebruikersnaam;
-                    gebruikersidlijst = BLLUser.selectgebruikerid(newUser.gebruikersnaam);
-                    gebruikersid = gebruikersidlijst[0];
+                   
                     toegestaan = BLLUser.Checker(newUser);
                     if (toegestaan == true)
                     {
+                        gebruikersidlijst = BLLUser.selectgebruikerid(newUser.gebruikersnaam);
+                        gebruikersid = gebruikersidlijst[0];
                         lblwerkt.Text = "gebruiker bestaat al";
                         Session.Add("gebruikersid", gebruikersid);
                         Response.Redirect("~/Home.aspx");
@@ -165,6 +167,8 @@ public partial class SignIn : System.Web.UI.Page
                         newUser.naam = naam;
                         newUser.rol = "visitor";
                         BLLUser.insert(newUser);
+                        gebruikersidlijst = BLLUser.selectgebruikerid(newUser.gebruikersnaam);
+                        gebruikersid = gebruikersidlijst[0];
                         Session.Add("gebruikersid", gebruikersid);
                         Response.Redirect("~/Home.aspx");
 

@@ -315,6 +315,7 @@ public partial class CreateEvent : System.Web.UI.Page
 
                 }
                 Session.Add("gebruikersid", gebruikerid);
+                Session.Add("feedback", "Het event is aangemaakt");
                 Response.Redirect("~/Home.aspx");
             }
         }
@@ -354,6 +355,7 @@ public partial class CreateEvent : System.Web.UI.Page
                 BLLEvent.update(newEvent);
 
                 Session.Add("gebruikersid", gebruikerid);
+                Session.Add("feedback", "Het event is aangepast");
                 Response.Redirect("~/Home.aspx");
 
             }

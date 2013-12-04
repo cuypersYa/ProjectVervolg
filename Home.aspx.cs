@@ -32,6 +32,7 @@ public partial class Home : System.Web.UI.Page
         IList<User> userLijst = BLLUser.selectgebruiker(gebruikerid);
         User user = userLijst[0];
         lblWelkom.Text = "Welkom " + user.voornaam;
+        lblFeedback.Text = (string)(Session["feedback"]);
 
         if (user.rol == "gewoon")
         {
@@ -66,6 +67,7 @@ public partial class Home : System.Web.UI.Page
 
     protected void btnUitloggen_Click(object sender, EventArgs e)
     {
+        Session.Add("feedbacklogin", "Je bent uitgelogd");
         Response.Redirect("~/SignIn.aspx");
     }
 }

@@ -117,7 +117,7 @@ public partial class InfoEvent : System.Web.UI.Page
             List<User> persoonlijst = BLLUser.selectgebruiker(row.persoonId);
             User persoon = persoonlijst[0];
             string naam = persoon.voornaam + " " + persoon.naam;
-            Comments.Add(naam + " " + row.commentTekst + " " + row.datum);
+            Comments.Add(naam + " " + System.Environment.NewLine + row.commentTekst + " " + row.datum);
         }
         rptComments.DataSource = Comments;
         rptComments.DataBind();
@@ -170,7 +170,6 @@ public partial class InfoEvent : System.Web.UI.Page
             BLLEvent.aanwezig(eventId);
             btnAfwezig.Text = "Afwezig";
             eventId = (int)(Session["eventid"]);
-            //Response.Redirect("~/Home.aspx");
             Response.Redirect(Request.RawUrl);
         }
 

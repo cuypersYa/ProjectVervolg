@@ -17,6 +17,7 @@
        <br />
    
         <div class="form-horizontal">
+            <asp:Label ID="lblFeedback" runat="server"></asp:Label>
         <br />
           <asp:TextBox ID="txtGebruikersnaam" runat="server" Text="Gebruikersnaam" Width="300px"></asp:TextBox>
           <asp:TextBox ID="txtWachtwoord" runat="server"  Text="Wachtwoord" TextMode="Password" Width="300px" ></asp:TextBox>

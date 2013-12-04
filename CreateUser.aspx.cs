@@ -35,6 +35,7 @@ public partial class CreateUser : System.Web.UI.Page
                 newUser.naam = naam;
                 newUser.rol = "visitor";
                 BLLUser.insert(newUser);
+                Session.Add("feedbacklogin", "Registratie voltooid");
                 Response.Redirect("~/Signin.aspx");
             }
          }
