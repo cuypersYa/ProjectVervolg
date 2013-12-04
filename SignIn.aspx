@@ -6,7 +6,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderId="ContentHeadCenter" runat="server">
     <div class="jumbotron">
         <br />
-      <div class="container">
+        <!--class="container"-->
+      <div >
           <div id="subtitle">
           <h2 >Ontdek evenementen in de Gym</h2>
               <br />

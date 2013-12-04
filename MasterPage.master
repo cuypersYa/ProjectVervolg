@@ -16,7 +16,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <!--
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -24,12 +24,12 @@
               <a class="navbar-brand" href="#">Project name</a>
             </div>
           </div>
-        </div>
+        </div>-->
         <div class="container">
         <asp:ContentPlaceHolder id="ContentHeadCenter" runat="server">
         </asp:ContentPlaceHolder>
         </div>
-    </div>
+    
     <div id="footer">
       <div class="container">
           <div class="center">
