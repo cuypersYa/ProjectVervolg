@@ -66,6 +66,7 @@
             </FooterTemplate>
         </asp:Repeater>
     </div>
+    <div class="clearfix"></div>
       <div class="floatLeft">
     <asp:Button ID="btnAfwezig" runat="server" Text="Aanwezig" CssClass="btn" OnClick="btnAfwezig_Click" />
 

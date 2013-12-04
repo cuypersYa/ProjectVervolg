@@ -7,7 +7,7 @@
     <div class="page-header">
         <asp:Label Text="Maak een nieuw event aan" runat="server"  CssClass="h1"></asp:Label>
     </div>
-        <asp:Label ID="lblTitel" runat="server" AssociatedControlID="txtTitel" Text="Titel"></asp:Label>
+    <h2><asp:Label ID="lblTitel" runat="server" AssociatedControlID="txtTitel" Text="Titel"></asp:Label></h2>
         <asp:TextBox ID="txtTitel" AutoPostBack="true" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvTitel" runat="server" ControlToValidate="txtTitel" ErrorMessage="Gelieve dit in te vullen"></asp:RequiredFieldValidator>
             <asp:Label ID="lblFeedbackNaam" runat="server" ></asp:Label>
