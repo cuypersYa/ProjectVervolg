@@ -4,7 +4,7 @@
     <title>Created Events</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderId="ContentHeadCenter" runat="server">
-    
+    <div class="jumbotron">
        
      <div class="page-header">
         <asp:Label ID="lblUser" runat="server" CssClass="h1"> Registreer u hier!</asp:Label>
@@ -45,4 +45,5 @@
     
     </div>
         <asp:Label ID="lblinorde" runat="server"></asp:Label>
+        </div>
 </asp:Content>

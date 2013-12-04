@@ -8,9 +8,11 @@
     clear:both;
     margin-top:50px;
 }
-/*.floatLeft {
+.floatLeft {
     float:left;
-}*/
+    margin-left: 20px;
+    min-width:300px;
+}
 .floatRight {
     float:right;
     margin-left:20px;
@@ -27,4 +29,7 @@
 }
 form-horizontal {
     width:300px;
+}
+.color {
+    color:#fff;
 }
