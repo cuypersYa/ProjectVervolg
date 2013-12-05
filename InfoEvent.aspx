@@ -62,6 +62,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
+
                         <%# Container.DataItem %>
                     </td>
                     
@@ -73,7 +74,8 @@
             </FooterTemplate>
         </asp:Repeater>
     <br />
-    <asp:TextBox ID="CommentBox" runat="server" ReadOnly="False" Height="300" Width="300" Wrap="True" TextMode="MultiLine"></asp:TextBox>
+    <asp:TextBox ID="CommentBox" runat="server" ReadOnly="False" Height="300" Width="300" Wrap="True" TextMode="MultiLine" MaxLength="400"></asp:TextBox>
+    <asp:Label ID="lblFeedback" runat="server" Text=""></asp:Label>
     <br />
     <asp:Button ID="btnComment" runat="server" CssClass="btn" OnClick="btnComment_Click" Text="Post" />
 

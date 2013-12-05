@@ -16,6 +16,7 @@ public partial class SignIn : System.Web.UI.Page
     User newUser = new User();
     List<int> gebruikersidlijst = new List<int>();
     int gebruikersid = 0;
+
     
 
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -38,10 +39,7 @@ public partial class SignIn : System.Web.UI.Page
             Session.Add("feedback", "");
             Response.Redirect("~/Home.aspx");
         }
-        else
-        {
-            lblwerkt.Text = "werkt niet";
-        }
+      
     }
     protected void btnSignup_Click(object sender, EventArgs e)
     {
@@ -65,10 +63,14 @@ public partial class SignIn : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        
+        lblFeedback.Text = (string)(Session["feedbacklogin"]);
+        Session.Add("feedbacklogin", "");
+
         //Facebook
         FaceBookConnect.API_Key = "249728251846520";
         FaceBookConnect.API_Secret = "1d01c361395c681d29ec84ba2a4aedc2";
-        lblFeedback.Text = (string)(Session["feedbacklogin"]);
+        
         if (!IsPostBack)
         {
             if (Request.QueryString["error"] == "access_denied")
@@ -100,8 +102,9 @@ public partial class SignIn : System.Web.UI.Page
                 toegestaan = BLLUser.Checker(newUser);
                 if (toegestaan == true)
                 {
-                    lblwerkt.Text = "gebruiker bestaat al";
+                    lblFeedback.Text = "gebruiker bestaat al";
                     Session.Add("gebruikersid", gebruikersid);
+                    Session.Add("feedback", "");
                     Response.Redirect("~/Home.aspx");
                     
                 }
@@ -113,6 +116,7 @@ public partial class SignIn : System.Web.UI.Page
                     newUser.rol = "visitor";
                     BLLUser.insert(newUser);
                     Session.Add("gebruikersid", gebruikersid);
+                    Session.Add("feedback", "");
                     Response.Redirect("~/Home.aspx");
        
                 }
@@ -155,8 +159,9 @@ public partial class SignIn : System.Web.UI.Page
                     {
                         gebruikersidlijst = BLLUser.selectgebruikerid(newUser.gebruikersnaam);
                         gebruikersid = gebruikersidlijst[0];
-                        lblwerkt.Text = "gebruiker bestaat al";
+                        lblFeedback.Text = "gebruiker bestaat al";
                         Session.Add("gebruikersid", gebruikersid);
+                        Session.Add("feedback", "");
                         Response.Redirect("~/Home.aspx");
 
                     }
@@ -170,6 +175,7 @@ public partial class SignIn : System.Web.UI.Page
                         gebruikersidlijst = BLLUser.selectgebruikerid(newUser.gebruikersnaam);
                         gebruikersid = gebruikersidlijst[0];
                         Session.Add("gebruikersid", gebruikersid);
+                        Session.Add("feedback", "");
                         Response.Redirect("~/Home.aspx");
 
                     }

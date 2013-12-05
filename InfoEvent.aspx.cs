@@ -30,6 +30,7 @@ public partial class InfoEvent : System.Web.UI.Page
         IList<User> userLijst = BLLUser.selectgebruiker(gebruikerid);
         User user = userLijst[0];
         lblgebruiker.Text = user.voornaam;
+        lblFeedback.Text = "";
 
         eventId = (int)(Session["eventid"]);
         List<Event> ActiefEventLijst = BLLEvent.SelectEvent(eventId);
@@ -99,7 +100,7 @@ public partial class InfoEvent : System.Web.UI.Page
                     Aanwezig Aanwezigenqr = LijstAanwezigen[i];
                     QRCodeEncoder encoder = new QRCodeEncoder();
                     Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
-                    img.Save("C:\\Users\\Veerle\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+                    img.Save("C:\\Users\\BJAAARN\\Documents\\GitHub\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
                     imgQrCode.ImageUrl = "img.jpg";
                 }
             }
@@ -119,6 +120,7 @@ public partial class InfoEvent : System.Web.UI.Page
             string naam = persoon.voornaam + " " + persoon.naam;
             Comments.Add(naam + "<br />" + row.datum + "<br />" + System.Environment.NewLine + row.commentTekst);
         }
+
         rptComments.DataSource = Comments;
         rptComments.DataBind();
 
@@ -204,15 +206,23 @@ public partial class InfoEvent : System.Web.UI.Page
     }
     protected void btnComment_Click(object sender, EventArgs e)
     {
-        eventId = (int)(Session["eventid"]);
-        gebruikerid = (int)(Session["gebruikersid"]);
-        Comment reactie = new Comment();
-        reactie.commentTekst = CommentBox.Text;
-        reactie.datum = DateTime.Now;
-        reactie.eventId = eventId;
-        reactie.persoonId = gebruikerid;
-        BLLComment.insert(reactie);
-        CommentBox.Text = "";
-        Response.Redirect(Request.RawUrl);
+        if (CommentBox.Text.Length <= 400)
+        {
+            eventId = (int)(Session["eventid"]);
+            gebruikerid = (int)(Session["gebruikersid"]);
+            Comment reactie = new Comment();
+            reactie.commentTekst = CommentBox.Text;
+            reactie.datum = DateTime.Now;
+            reactie.eventId = eventId;
+            reactie.persoonId = gebruikerid;
+            BLLComment.insert(reactie);
+            CommentBox.Text = "";
+            Response.Redirect(Request.RawUrl);
+            lblFeedback.Text = "";
+        }
+        else
+        {
+            lblFeedback.Text = "U kan maximum 400 karakters invoegen";
+        }
     }
 }

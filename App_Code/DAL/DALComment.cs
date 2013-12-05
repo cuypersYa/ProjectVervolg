@@ -12,8 +12,11 @@ public class DALComment
 
     public void insert(Comment c_ev)
     {
-        dc.Comments.InsertOnSubmit(c_ev);
-        dc.SubmitChanges();
+        
+            dc.Comments.InsertOnSubmit(c_ev);
+            dc.SubmitChanges();
+        
+        
     }
 
     public List<Comment> selectAll(int e_id)
