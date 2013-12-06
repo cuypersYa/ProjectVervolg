@@ -49,15 +49,15 @@
       <Association Name="User_Aanwezig" Member="User" ThisKey="PersoonId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Comment" Member="Comments">
+  <Table Name="dbo.Comments" Member="Comments">
     <Type Name="Comment">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="commentTekst" Type="System.String" DbType="VarChar(400) NOT NULL" CanBeNull="false" />
-      <Column Name="datum" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="persoonId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="eventId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="User_Comment" Member="User" ThisKey="persoonId" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Column Name="datum" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="Event_Comment" Member="Event" ThisKey="eventId" OtherKey="Id" Type="Event" IsForeignKey="true" />
+      <Association Name="User_Comment" Member="User" ThisKey="persoonId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
