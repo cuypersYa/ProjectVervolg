@@ -50,8 +50,6 @@ public partial class CreateEvent : System.Web.UI.Page
 
         if (txtSpreker2.Visible == false)
         {
-            Session.Add("sprekergetal", 1);
-            Sprekernaam.Add(txtSpreker1.Text);
             if (Convert.ToDateTime(txtBeginTijd1.Text) < Convert.ToDateTime(txtEindTijd1.Text))
             {
                 lblFeedbackTijd.Text = "";
@@ -65,7 +63,10 @@ public partial class CreateEvent : System.Web.UI.Page
             {
                 lblFeedbackTijd.Text = "De eindtijd moet hoger zijn dan de begintijd";
             }
+            Session.Add("sprekergetal", 1);
+            Sprekernaam.Add(txtSpreker1.Text);
         }
+       
         Sprekernaam = (List<string>)Session["lijstsprekers"];
         Sprekerbegintijd = (List<string>)Session["lijstbegintijd"];
         Sprekereindtijd = (List<string>)Session["lijsteindtijd"];
