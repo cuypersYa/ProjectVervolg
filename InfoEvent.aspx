@@ -66,19 +66,14 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
-<<<<<<< HEAD
     </div>
     <div class="clearfix"></div>
       <div class="floatLeft">
-=======
     <br />
-    <asp:TextBox ID="CommentBox" runat="server" ReadOnly="False" Height="300" Width="300" Wrap="True" TextMode="MultiLine" MaxLength="400"></asp:TextBox>
     <asp:Label ID="lblFeedback" runat="server" Text=""></asp:Label>
     <br />
-    <asp:Button ID="btnComment" runat="server" CssClass="btn" OnClick="btnComment_Click" Text="Post" />
 
     <br />
->>>>>>> 1961e742b5e1193d6fc41a4bbd2d93a5c18c4a52
     <asp:Button ID="btnAfwezig" runat="server" Text="Aanwezig" CssClass="btn" OnClick="btnAfwezig_Click" />
 
     <asp:Button ID="btnEdit" runat="server" CssClass="btn" OnClick="btnEdit_Click" Text="Edit" />
