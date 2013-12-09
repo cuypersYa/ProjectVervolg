@@ -10,7 +10,7 @@
         <asp:Label ID="lblWelkom" runat="server" Text="Label"  CssClass="h1"></asp:Label>
         <br />
      </div> 
-        <asp:Label ID="lblFeedback" runat="server" Text=""></asp:Label>
+        <asp:Label ID="lblFeedback" runat="server" Text="" CssClass="alert-success"></asp:Label>
         <br />
         <br />
         <asp:Repeater ID="rptEvents" runat="server">
