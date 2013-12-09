@@ -13,11 +13,11 @@
               <br />
         <div class="center">
        
-            <img src="Content/img/logoGym.jpg" />
+            <img src="Content/img/logoGym.png" />
        <br />
    
         <div class="form-horizontal">
-            <asp:Label ID="lblFeedback" runat="server" CssClass="alert alert-success"></asp:Label>
+            <asp:Label ID="lblFeedback" runat="server" CssClass="alert-success"></asp:Label>
         <br />
           <asp:TextBox ID="txtGebruikersnaam" runat="server" Text="Gebruikersnaam" Width="300px"></asp:TextBox>
           <asp:TextBox ID="txtWachtwoord" runat="server"  Text="Wachtwoord" TextMode="Password" Width="300px" ></asp:TextBox>
