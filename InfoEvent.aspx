@@ -110,8 +110,13 @@
     
     <div class="floatLeft">
         <h2>Comments</h2>
+<<<<<<< HEAD
         <asp:Label ID="lblComment" runat="server" Text="Er zijn nog geen comments geplaatst"></asp:Label>
     <asp:Repeater ID="rptComments" runat="server" DataSourceID="">
+=======
+         <asp:Label ID="lblComment" runat="server" Text="Er zijn nog geen comments geplaatst"></asp:Label>
+     <asp:Repeater ID="rptComments" runat="server" DataSourceID="">
+>>>>>>> 5d381bc9a72244ee0e84710dca95ee835c1575c8
             <HeaderTemplate>
                 <table class="table table-striped">
             </HeaderTemplate>
