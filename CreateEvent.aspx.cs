@@ -370,6 +370,11 @@ public partial class CreateEvent : System.Web.UI.Page
     }
 
 
+    protected void btnTerug_Click(object sender, EventArgs e)
+    {
+        Session.Add("feedback", "");
+        Response.Redirect("~/Home.aspx");
+    }
 }
     
 

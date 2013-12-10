@@ -27,7 +27,6 @@ public partial class SignIn : System.Web.UI.Page
         newUser.gebruikersnaam = gebruiker;
         newUser.wachtwoord = wachtwoord;
         gebruikersidlijst = BLLUser.selectgebruikerid(newUser.gebruikersnaam);
-        gebruikersid = gebruikersidlijst[0];
 
         
 
@@ -35,9 +34,14 @@ public partial class SignIn : System.Web.UI.Page
 
         if (toegelaten == true)
         {
+            gebruikersid = gebruikersidlijst[0];
             Session.Add("gebruikersid", gebruikersid);
             Session.Add("feedback", "");
             Response.Redirect("~/Home.aspx");
+        }
+        else
+        {
+            lblFeedback.Text = "Gebruiker bestaat niet of het wachtwoord klopt niet";
         }
       
     }

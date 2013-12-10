@@ -45,8 +45,8 @@
 
 .btn-primary:active,
 .btn-primary.active {
-  background-color: #3071a9;
-  border-color: #2d6ca2;
+  /*background-color: #3071a9;
+  border-color: #2d6ca2;*/
 }
 
 .btn-success {
