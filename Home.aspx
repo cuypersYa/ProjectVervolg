@@ -14,7 +14,7 @@
         <br />
             </div>
      </div> 
-        <asp:Label ID="lblFeedback" runat="server" Text="" CssClass="alert-success"></asp:Label>
+        <asp:Label ID="lblFeedback" runat="server" Text="" CssClass="alert-warning"></asp:Label>
         <br />
         <br />
         <asp:Repeater ID="rptEvents" runat="server">

@@ -135,8 +135,9 @@
         <h2>Post een comment</h2>
     <asp:TextBox ID="CommentBox" runat="server" CssClass="textarea" ReadOnly="False" Height="100" Width="500" Wrap="True" TextMode="MultiLine"></asp:TextBox>
     <br />
+        <asp:RequiredFieldValidator ID="rqfCheck" runat="server" ControlToValidate="CommentBox" ErrorMessage="U kan geen lege comment plaatsen" ValidationGroup="leeg" CssClass="alert-danger"></asp:RequiredFieldValidator>
     <br />
-    <asp:Button ID="btnComment" runat="server" CssClass="btn" OnClick="btnComment_Click" Text="Post" />
+    <asp:Button ID="btnComment" runat="server" CssClass="btn" OnClick="btnComment_Click" Text="Post" ValidationGroup="leeg" />
     </div>
     <br />
   <div class="clearfix"></div>
