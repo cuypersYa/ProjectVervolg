@@ -9,7 +9,7 @@ public partial class Admin : System.Web.UI.Page
 {
     BLLUser BLLUser = new BLLUser();
     List<User> lijstUsers= new List<User>();
-        List<string> lijstnamen = new List<string>();
+    List<string> lijstnamen = new List<string>();
     protected void Page_Load(object sender, EventArgs e)
     {
         lijstUsers = BLLUser.selectGeenAdmin();

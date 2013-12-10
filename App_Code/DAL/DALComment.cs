@@ -27,14 +27,23 @@ public class DALComment
 
     public void deleteComments(int e_ev)
     {
-        var eventVerwijder = (from e in dc.Comments
-                              where e.eventId == e_ev
-                              select e).ToList();
-
-        foreach (Comment row in eventVerwijder)
+        try
         {
-            dc.Comments.DeleteOnSubmit(row);
-            dc.SubmitChanges();
+            var eventVerwijder = (from e in dc.Comments
+                                  where e.eventId == e_ev
+                                  select e).ToList();
+
+            foreach (Comment row in eventVerwijder)
+            {
+                dc.Comments.DeleteOnSubmit(row);
+                dc.SubmitChanges();
+            }
+        }
+        catch (InvalidOperationException e)
+        {
+
+            Console.Write(e);
+
         }
       
     }
