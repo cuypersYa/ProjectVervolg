@@ -33,4 +33,8 @@ public partial class Admin : System.Web.UI.Page
         Response.Redirect("~/Home.aspx");
 
     }
+    protected void btnTerug_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Home.aspx");
+    }
 }

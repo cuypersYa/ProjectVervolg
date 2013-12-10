@@ -4,8 +4,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderId="ContentHeadCenter" runat="server">
     <div class="page-header">
-        <asp:Label ID="lblEvent" runat="server" CssClass="h1"> HIER KOMT DE NAAM VAN HET EVENT</asp:Label>
-    </div>
+        <div class="floatLeft">
+            <img src="Content/img/logoGym.png" class="logocreativity" />
+        </div>
+        <div class="floatLeft">
+        <br />
+        <asp:Label ID="lblEvent" runat="server" Text="Label"  CssClass="h1"></asp:Label>
+        <br />
+            </div>
+     </div> 
       <div class="color">
         <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
         <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="Timer"></asp:Timer>

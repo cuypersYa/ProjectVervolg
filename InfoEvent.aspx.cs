@@ -117,7 +117,10 @@ public partial class InfoEvent : System.Web.UI.Page
             List<User> persoonlijst = BLLUser.selectgebruiker(row.persoonId);
             User persoon = persoonlijst[0];
             string naam = persoon.voornaam + " " + persoon.naam;
-            Comments.Add(naam + "<br />" + row.datum + "<br />" + System.Environment.NewLine + row.commentTekst);
+            string datum = row.datum.ToString();
+            var splitdatum = datum.Split(' ');
+            string datumzondertijd = splitdatum[0];
+            Comments.Add(naam + "<br />" + datumzondertijd + "<br />" + System.Environment.NewLine + row.commentTekst);
         }
 
         rptComments.DataSource = Comments;

@@ -5,8 +5,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderId="ContentHeadCenter" runat="server">
     <div class="page-header">
-        <asp:Label Text="Maak een nieuw event aan" runat="server"  CssClass="h1"></asp:Label>
-    </div>
+        <div class="floatLeft">
+            <img src="Content/img/logoGym.png" class="logocreativity" />
+        </div>
+        <div class="floatLeft">
+        <br />
+        <asp:Label runat="server" Text="Maak een nieuw event aan"  CssClass="h1"></asp:Label>
+        <br />
+            </div>
+     </div> 
     <div class="floatLeft">
     <h2><asp:Label ID="lblTitel" runat="server" AssociatedControlID="txtTitel" Text="Titel"></asp:Label></h2>
         <asp:TextBox ID="txtTitel" AutoPostBack="true" runat="server"></asp:TextBox>
