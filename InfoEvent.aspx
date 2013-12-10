@@ -13,23 +13,7 @@
         <br />
             </div>
      </div> 
-      <div class="color">
-        <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
-        <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="Timer"></asp:Timer>
-    </div>
-
-    <div class="color">
-        <asp:UpdatePanel id="updPnl" runat="server" UpdateMode="Conditional">
-    <ContentTemplate>
-        <asp:Label ID="lblTimer" runat="server"></asp:Label>
-    </ContentTemplate>
-
-    <Triggers>
-        <asp:AsyncPostBackTrigger ControlID="timer" EventName ="tick" />
-    </Triggers>
-   
-    </asp:UpdatePanel>
-        </div>
+      
      
    
     <div class="floatLeft">
@@ -102,6 +86,23 @@
  
     </div>
     <div class="floatQr">
+        <div class="color">
+        <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
+        <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="Timer"></asp:Timer>
+    </div>
+
+    <div class="color">
+        <asp:UpdatePanel id="updPnl" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <asp:Label ID="lblTimer" runat="server"></asp:Label>
+    </ContentTemplate>
+
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="timer" EventName ="tick" />
+    </Triggers>
+   
+    </asp:UpdatePanel>
+        </div>
         <h2>QR code</h2>
         <asp:Image ID="imgQrCode" runat="server" />
     </div>

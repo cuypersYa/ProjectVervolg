@@ -466,6 +466,8 @@ h6,
 .h5,
 .h6 {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+  color:#428bca;
   font-weight: 500;
   line-height: 1.1;
 }
@@ -504,7 +506,8 @@ h6 {
 h1,
 .h1 {
   font-size: 36px;
-  color: #000;
+  
+  color:#428bca;
 }
 
 h2,

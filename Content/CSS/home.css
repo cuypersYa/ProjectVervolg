@@ -24,8 +24,7 @@
 .floatQr{
     float:left;
     margin-right: 50px;
-    width:200px;
-    padding-left:70px;
+    margin-top:15px;
 }
 
 #ContentHeadCenter_imgQrCode{
