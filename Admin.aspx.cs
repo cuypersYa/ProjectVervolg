@@ -13,6 +13,7 @@ public partial class Admin : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         lijstUsers = BLLUser.selectGeenAdmin();
+        string gebruiker = "";
 
         
 
@@ -21,17 +22,30 @@ public partial class Admin : System.Web.UI.Page
             lijstnamen.Add(row.gebruikersnaam);
 
         }
-        ddlGebruikers.DataSource = lijstnamen;
-        ddlGebruikers.DataBind();
+        
+
+         if (!IsPostBack)
+        {
+            
+            ddlGebruikers.DataSource = lijstnamen;
+            ddlGebruikers.DataBind();
+            
+        }
+         else
+         {
+             gebruiker = ddlGebruikers.SelectedItem.Text;
+             Session.Add("gebruiker", gebruiker);
+         }
         
     }
     protected void btnAdmin_Click(object sender, EventArgs e)
     {
-        string gebruiker = ddlGebruikers.SelectedValue;
-        BLLUser.updateUser(gebruiker);
-        Session.Add("feedback", "De user is admin geworden.");
-        Response.Redirect("~/Home.aspx");
 
+        string gebruiker = Session["gebruiker"].ToString();
+            BLLUser.updateUser(gebruiker);
+            Session.Add("feedback", "De user is admin geworden.");
+            Response.Redirect("~/Home.aspx");
+        
     }
     protected void btnTerug_Click(object sender, EventArgs e)
     {

@@ -18,7 +18,7 @@
      </div> 
     <div class="floatLeft">
     
-        <asp:DropDownList ID="ddlGebruikers" runat="server">
+        <asp:DropDownList ID="ddlGebruikers" runat="server" AutoPostBack="true">
         </asp:DropDownList>
     
     </div>

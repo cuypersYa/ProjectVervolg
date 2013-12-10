@@ -12,7 +12,7 @@
         </div>
         <div class="floatLeft">
         <br />
-        <asp:Label  runat="server" Text="Registreet u hier"  CssClass="h1"></asp:Label>
+        <asp:Label  runat="server" Text="Registreer u hier"  CssClass="h1"></asp:Label>
         <br />
             </div>
          </div>
