@@ -177,6 +177,10 @@ public partial class InfoEvent : System.Web.UI.Page
 
 
     }
+    protected void btnGaTerug_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Home.aspx");
+    }
 
     protected void Timer(object sender, EventArgs e)
     {
