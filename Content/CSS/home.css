@@ -37,3 +37,7 @@ form-horizontal {
     background-color:transparent;
     color:#fff;
 }
+
+.textarea {
+    resize: none;
+}

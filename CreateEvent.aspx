@@ -15,7 +15,7 @@
         <br />
       <h2><asp:Label ID="lblInformatie" runat="server" AssociatedControlID="txtInformatie" Text="Informatie"></asp:Label></h2>
         
-        <asp:TextBox id="txtInformatie" AutoPostBack="true" runat="server" TextMode="MultiLine" Height="300" Width="300"></asp:TextBox>
+        <asp:TextBox id="txtInformatie" CssClass="textarea" AutoPostBack="true" runat="server" TextMode="MultiLine" Height="300" Width="300"></asp:TextBox>
 
         <asp:RequiredFieldValidator ID="rfvInformatie" runat="server" ControlToValidate="txtInformatie" ErrorMessage="Gelieve dit in te vullen"></asp:RequiredFieldValidator>
         <br />

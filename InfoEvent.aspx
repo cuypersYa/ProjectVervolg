@@ -16,7 +16,7 @@
         <!--<h2>Event id: <asp:Label ID="lblEventid" runat="server" Text="Label"></asp:Label></h2>-->
         <h2>Informatie Event</h2>
         <br />
-        <asp:TextBox ID="lblEventInformation" runat="server" ReadOnly="True" Height="100" Width="300" Wrap="True" TextMode="MultiLine"></asp:TextBox>
+        <asp:TextBox ID="lblEventInformation" runat="server" CssClass="textarea" ReadOnly="True" Height="100" Width="300" Wrap="True" TextMode="MultiLine"></asp:TextBox>
 
         <br />
         <br />
@@ -128,7 +128,7 @@
     <div class="clearfix"></div>
     <div class="floatLeft">
         <h2>Post een comment</h2>
-    <asp:TextBox ID="CommentBox" runat="server" ReadOnly="False" Height="100" Width="500" Wrap="True" TextMode="MultiLine"></asp:TextBox>
+    <asp:TextBox ID="CommentBox" runat="server" CssClass="textarea" ReadOnly="False" Height="100" Width="500" Wrap="True" TextMode="MultiLine"></asp:TextBox>
     <br />
     <br />
     <asp:Button ID="btnComment" runat="server" CssClass="btn" OnClick="btnComment_Click" Text="Post" />
