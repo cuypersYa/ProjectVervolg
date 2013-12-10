@@ -105,7 +105,7 @@ public partial class InfoEvent : System.Web.UI.Page
             }
             else
             {
-                imgQrCode.Visible = false;
+                //imgQrCode.Visible = false;
             }
         }
 
