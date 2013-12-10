@@ -40,4 +40,9 @@ public partial class CreateUser : System.Web.UI.Page
             }
          }
      }
+    protected void btnTerug_Click(object sender, EventArgs e)
+    {
+        Session.Add("feedbacklogin", "");
+        Response.Redirect("~/Signin.aspx");
+    }
 }

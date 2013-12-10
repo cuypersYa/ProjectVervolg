@@ -6,12 +6,25 @@
     <div class="page-header">
         <asp:Label ID="lblEvent" runat="server" CssClass="h1"> HIER KOMT DE NAAM VAN HET EVENT</asp:Label>
     </div>
+      <div class="color">
+        <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
+        <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="Timer"></asp:Timer>
+    </div>
+
+    <div class="color">
+        <asp:UpdatePanel id="updPnl" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <asp:Label ID="lblTimer" runat="server"></asp:Label>
+    </ContentTemplate>
+
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="timer" EventName ="tick" />
+    </Triggers>
    
+    </asp:UpdatePanel>
+        </div>
      
-    <div class="floatLeft">
-        <h1>Gebruiker: <asp:Label ID="lblgebruiker" runat="server" Text="Label" ></asp:Label></h1>
-   </div>
-        <div class="clearfix"></div>
+   
     <div class="floatLeft">
         <!--<h2>Event id: <asp:Label ID="lblEventid" runat="server" Text="Label"></asp:Label></h2>-->
         <h2>Informatie Event</h2>
@@ -20,9 +33,8 @@
 
         <br />
         <br />
-    </div>
-    <div class="floatLeft">
-        <h2>De sprekers</h2>
+    
+        <h2>Timetable</h2>
      <asp:Repeater ID="rptSprekers" runat="server" DataSourceID="">
             <HeaderTemplate>
                 <table class="table table-striped">
@@ -41,11 +53,9 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
-        <h2>QR code</h2>
-    <asp:Image ID="imgQrCode" runat="server" />
+        
     <br />
-    </div>
-    <div class="floatLeft">
+   
         <h2>Aanwezige</h2>
         <asp:Repeater ID="rptAanwezig" runat="server" DataSourceID="">
             <HeaderTemplate>
@@ -66,10 +76,7 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
-    </div>
-    <div class="clearfix"></div>
-      <div class="floatLeft">
-    <br />
+        <br />
     <asp:Label ID="lblFeedback" runat="server" Text=""></asp:Label>
     <br />
 
@@ -82,27 +89,16 @@
 
     <asp:Button iD="btnHome" Text="Ga terug" runat="server" CssClass="btn" OnClick="btnGaTerug_Click" />
 
-    <div class="color">
-        <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
-        <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="Timer"></asp:Timer>
+   
+    <div class="clearfix">
     </div>
-
-    <div class="color">
-        <asp:UpdatePanel id="updPnl" runat="server" UpdateMode="Conditional">
-    <ContentTemplate>
-        <asp:Label ID="lblTimer" runat="server"></asp:Label>
-    </ContentTemplate>
-
-    <Triggers>
-        <asp:AsyncPostBackTrigger ControlID="timer" EventName ="tick" />
-    </Triggers>
-   
-</asp:UpdatePanel>
-        </div>
-</div>
-   
-    
-
+ 
+    </div>
+    <div class="floatQr">
+        <h2>QR code</h2>
+        <asp:Image ID="imgQrCode" runat="server" />
+    </div>
+    <div class="clearfix"></div>
     
     <div class="floatLeft">
         <h2>Comments</h2>
@@ -116,6 +112,7 @@
                     <td>
                         <%# Container.DataItem %>
                     </td>
+                    
                     
                 </tr>
             </ItemTemplate>

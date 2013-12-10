@@ -29,7 +29,6 @@ public partial class InfoEvent : System.Web.UI.Page
         gebruikerid = (int)(Session["gebruikersid"]);
         IList<User> userLijst = BLLUser.selectgebruiker(gebruikerid);
         User user = userLijst[0];
-        lblgebruiker.Text = user.voornaam;
         lblFeedback.Text = "";
 
         eventId = (int)(Session["eventid"]);
@@ -100,7 +99,7 @@ public partial class InfoEvent : System.Web.UI.Page
                     Aanwezig Aanwezigenqr = LijstAanwezigen[i];
                     QRCodeEncoder encoder = new QRCodeEncoder();
                     Bitmap img = encoder.Encode(Aanwezigenqr.qrcode);
-                    img.Save("C:\\Users\\Veerle\\Documents\\Github\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
+                    img.Save("C:\\Users\\Bjaaarn\\Documents\\Github\\ProjectVervolg\\img.jpg", ImageFormat.Jpeg);
                     imgQrCode.ImageUrl = "img.jpg";
                 }
             }
@@ -183,7 +182,7 @@ public partial class InfoEvent : System.Web.UI.Page
         if (0 > DateTime.Compare(DateTime.Now,
         DateTime.Parse(Session["timeout"].ToString())))
         {
-            lblTimer.Text = "Time left: " +
+            lblTimer.Text = "Het evenement begint binnen: " + "<br />" +
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Days).ToString() + " days " +
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Hours).ToString() + " hours " +
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Minutes).ToString() + " mintues " +
@@ -192,6 +191,7 @@ public partial class InfoEvent : System.Web.UI.Page
     }
     protected void btnGaTerug_Click(object sender, EventArgs e)
     {
+        Session.Add("feedback", "");
         Response.Redirect("~/Home.aspx");
     }
     protected void btnEdit_Click(object sender, EventArgs e)

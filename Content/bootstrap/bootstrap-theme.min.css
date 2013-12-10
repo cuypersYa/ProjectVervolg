@@ -3,8 +3,8 @@
     border-color: #2d6ca2;
     
 }.btn-primary:active,.btn-primary.active{background-color:#3071a9;border-color:#2d6ca2}.btn-success{background-repeat: repeat-x;
-    border-color: #419641;
-    background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+    /*border-color: #419641;
+    background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);*/
 }.btn-success:active,.btn-success.active{background-color:#449d44;border-color:#419641}.btn-warning{background-repeat: repeat-x;
     border-color: #eb9316;
     background-image: linear-gradient(to bottom,#f0ad4e 0,#ec971f 100%);

@@ -4,14 +4,33 @@
 #ContentHeadCenter {
     clear:both;
 }
+
+#imgQrCode{
+    width:100px;
+    height:100px;
+}
 .page-header {
     clear:both;
     margin-top:50px;
+    height:70px;
 }
 .floatLeft {
     float:left;
-    margin-left: 20px;
-    min-width:300px;
+    margin-right: 50px;
+    width:45%;
+}
+
+.floatQr{
+    float:left;
+    margin-right: 50px;
+    width:200px;
+    padding-left:70px;
+}
+
+#ContentHeadCenter_imgQrCode{
+    margin-top:50px;
+    width:200px;
+    height:200px;
 }
 .floatRight {
     float:right;
@@ -20,6 +39,7 @@
 #subtitle {
     text-align: center;
 }
+
 .center {
     text-align:center;
 
@@ -31,7 +51,9 @@ form-horizontal {
     width:300px;
 }
 .color {
+    font-size:1.5em;
     color:#000;
+    text-align:center;
 }
 .createUser {
     background-color:transparent;
@@ -40,4 +62,11 @@ form-horizontal {
 
 .textarea {
     resize: none;
+}
+
+.logocreativity
+{
+    margin-top:-40px;
+    height:100px;
+    width:140px;
 }

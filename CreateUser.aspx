@@ -45,7 +45,7 @@
        </tr>
     </table>
         <asp:Button ID="btnSignup" runat="server" OnClick="btnSignup_Click" Text="Sign up" CssClass="btn btn-primary btn-large"/>
-    
+        <asp:Button ID="btnTerug" runat="server" OnClick="btnTerug_Click" Text="Ga terug" CssClass="btn" />
     </div>
         <asp:Label ID="lblinorde" runat="server"></asp:Label>
         </div>

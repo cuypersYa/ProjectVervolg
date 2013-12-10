@@ -5,10 +5,14 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderId="ContentHeadCenter" runat="server">
     <div class="page-header">
-        
+        <div class="floatLeft">
+            <img src="Content/img/logoGym.png" class="logocreativity" />
+        </div>
+        <div class="floatLeft">
         <br />
         <asp:Label ID="lblWelkom" runat="server" Text="Label"  CssClass="h1"></asp:Label>
         <br />
+            </div>
      </div> 
         <asp:Label ID="lblFeedback" runat="server" Text="" CssClass="alert-success"></asp:Label>
         <br />
@@ -27,6 +31,7 @@
                         <%# Eval("Datum", "{0:d}")%>
                     </td>
                     <td>
+                        <asp:LinkButton ID="btnUser" OnClick="btnInfoEvent_Click" CommandArgument='<%# Eval("id") %>' runat="server" CssClass="glyphicon glyphicon-user"></asp:LinkButton>
                         <%# Eval("visitors") %>
                     </td>
                     
