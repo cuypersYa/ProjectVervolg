@@ -36,11 +36,11 @@ public partial class Home : System.Web.UI.Page
 
         if (user.rol == "gewoon")
         {
-            btnAlleenAdmin.Visible = true;
+            btnAdmin.Visible = true;
         }
         else
         {
-            btnAlleenAdmin.Visible = false;
+            btnAdmin.Visible = false;
         }
         List<Event> AllEvents = BLLEvent.SelectAllEvents();
         rptEvents.DataSource = AllEvents.OrderBy(x => x.datum);
@@ -69,5 +69,10 @@ public partial class Home : System.Web.UI.Page
     {
         Session.Add("feedbacklogin", "Je bent uitgelogd");
         Response.Redirect("~/SignIn.aspx");
+    }
+    protected void btnAdmin_Click(object sender, EventArgs e)
+    {
+        Session.Add("gebruikersid", gebruikerid);
+        Response.Redirect("~/Admin.aspx");
     }
 }

@@ -81,6 +81,7 @@
     <asp:Button ID="btnVerwijder" runat="server" CssClass="btn" OnClick="btnVerwijder_Click" Text="Verwijder" Visible="False" />
 
     <asp:Button iD="btnHome" Text="Ga terug" runat="server" CssClass="btn" OnClick="btnGaTerug_Click" />
+
     <div class="color">
         <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
         <asp:Timer ID="timer" runat="server" Interval="1000" OnTick="Timer"></asp:Timer>

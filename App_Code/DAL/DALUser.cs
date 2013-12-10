@@ -57,4 +57,17 @@ public class DALUser
         var gebruikerid = from u in dc.Users where u.gebruikersnaam == gebruikersnaam select u.Id;
         return gebruikerid.ToList();
     }
+
+    public List<User> selectGeenAdmin()
+    {
+        var gebruikers = from u in dc.Users where u.rol == "visitor" select u;
+        return gebruikers.ToList();
+    }
+
+    public void updateUser(string gebruikersnaam)
+    {
+        var record_to_update = (from u in dc.Users where u.gebruikersnaam == gebruikersnaam select u).Single();
+        record_to_update.rol = "gewoon";
+        dc.SubmitChanges();
+    }
 }

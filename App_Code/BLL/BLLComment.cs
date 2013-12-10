@@ -19,4 +19,9 @@ public class BLLComment
     {
         return DALComments.selectAll(e_ev);
     }
+
+    public void deleteComments(int e_ev)
+    {
+        DALComments.deleteComments(e_ev);
+    }
 }

@@ -57,11 +57,13 @@ public class DALEvent
     {
         BLLAanwezig BLLAanwezigen = new BLLAanwezig();
         BLLSpreker BLLSpreker = new BLLSpreker();
+        BLLComment BLLComments = new BLLComment();
         var eventVerwijder = (from e in dc.Events
                    where e.Id == e_int
                    select e).Single();
         BLLSpreker.delete(e_int);
         BLLAanwezigen.deleteEvent(e_int);
+        BLLComments.deleteComments(e_int);
         dc.Events.DeleteOnSubmit(eventVerwijder);
         
         dc.SubmitChanges();

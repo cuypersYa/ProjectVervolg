@@ -42,7 +42,7 @@ public partial class InfoEvent : System.Web.UI.Page
         IList<int> Events = BLLAanwezig.SelectEvent(eventId);
         var Aanwezigen = new List<string>();
 
-        if (user.Id == ActiefEvent.eigenaar)
+        if (user.Id == ActiefEvent.eigenaar || user.rol =="gewoon" )
         {
             btnEdit.Visible = true;
             btnVerwijder.Visible = true;
@@ -177,10 +177,6 @@ public partial class InfoEvent : System.Web.UI.Page
 
 
     }
-    protected void btnGaTerug_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/Home.aspx");
-    }
 
     protected void Timer(object sender, EventArgs e)
     {
@@ -193,6 +189,10 @@ public partial class InfoEvent : System.Web.UI.Page
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Minutes).ToString() + " mintues " +
             ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Seconds).ToString() + " seconds ";
         }
+    }
+    protected void btnGaTerug_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Home.aspx");
     }
     protected void btnEdit_Click(object sender, EventArgs e)
     {

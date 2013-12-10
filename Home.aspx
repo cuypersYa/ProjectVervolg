@@ -46,7 +46,7 @@
        <p class="floatRight">
             <asp:Button ID="btnMaakEvent" runat="server" OnClick="btnMaakEvent_Click" Text="Maak Event" CssClass="btn btn-primary btn-large"/>
         
-            <asp:Button ID="btnAlleenAdmin" runat="server" Onclick="btnInfoEvent_Click" Text="Alleen Admin" CssClass="btn"/>
+            <asp:Button ID="btnAdmin" runat="server" Onclick="btnAdmin_Click" Text="Admin" CssClass="btn"/>
             
              <asp:Button ID="btnUitloggen" runat="server" CssClass="btn" OnClick="btnUitloggen_Click" Text="Uitloggen" />        
         </p>

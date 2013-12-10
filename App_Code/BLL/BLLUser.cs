@@ -33,5 +33,15 @@ public class BLLUser
         return DALUsers.selectIdGebruiker(gebruikersnaam);
     }
 
+    public List<User> selectGeenAdmin()
+    {
+        return DALUsers.selectGeenAdmin();
+    }
+
+    public void updateUser(string gebruikersnaam)
+    {
+        DALUsers.updateUser(gebruikersnaam);
+    }
+
    
 }

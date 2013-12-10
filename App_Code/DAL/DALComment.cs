@@ -24,4 +24,18 @@ public class DALComment
         var query = (from u in dc.Comments where u.eventId == e_id select u).ToList();
         return query;
     }
+
+    public void deleteComments(int e_ev)
+    {
+        var eventVerwijder = (from e in dc.Comments
+                              where e.eventId == e_ev
+                              select e).ToList();
+
+        foreach (Comment row in eventVerwijder)
+        {
+            dc.Comments.DeleteOnSubmit(row);
+            dc.SubmitChanges();
+        }
+      
+    }
 }

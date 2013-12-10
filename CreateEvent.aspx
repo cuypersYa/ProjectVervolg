@@ -37,7 +37,7 @@
     
    <div class="floatLeft">
         <h2><asp:Label ID="lblDatum" runat="server" AssociatedControlID="clDatum" Text="Datum"></asp:Label></h2>
-        <asp:Calendar ID="clDatum" runat="server" AutoPostBack="true" SelectedDate="10/30/2013 18:03:17" VisibleDate="2013-11-28" ></asp:Calendar>
+        <asp:Calendar ID="clDatum" runat="server" AutoPostBack="true" SelectedDate="10/30/2013 18:03:17" VisibleDate="" ></asp:Calendar>
         <br />
         <asp:Label ID="lblFeedbackDatum" runat="server" CssClass="alert-warning"></asp:Label>
        `<br />

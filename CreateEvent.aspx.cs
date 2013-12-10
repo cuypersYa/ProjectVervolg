@@ -47,6 +47,7 @@ public partial class CreateEvent : System.Web.UI.Page
     {
 
         int spreker;
+        lblFeedbackTijd.Text = "";
 
         if (txtSpreker2.Visible == false)
         {
@@ -247,10 +248,10 @@ public partial class CreateEvent : System.Web.UI.Page
     }
     protected void btnMaak_Click(object sender, EventArgs e)
     {
+        
         if (btnMaak.Text == "Maak aan")
         {
-
-
+            
             lblFeedbackNaam.Text = "";
             Boolean toegestaan = true;
 
@@ -315,11 +316,16 @@ public partial class CreateEvent : System.Web.UI.Page
 
 
                 }
+                txtBeginTijd1.TextChanged += new EventHandler(txtSpreker1_TextChanged);
                 Session.Add("gebruikersid", gebruikerid);
                 Session.Add("feedback", "Het event is aangemaakt");
                 Response.Redirect("~/Home.aspx");
             }
-        }
+            }
+           
+               
+
+        
         else
         {
 
