@@ -62,7 +62,6 @@ a:hover {
 h1 {
   margin: 0.67em 0;
   font-size: 2em;
-  
 }
 
 abbr[title] {
@@ -554,7 +553,7 @@ h4 small,
 .page-header {
   padding-bottom: 9px;
   margin: 40px 0 20px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #c6c6c6;
 }
 
 ul,
@@ -2005,6 +2004,9 @@ textarea.input-lg {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
+  background-color: #d5572b;
+  border: 1px solid #ab4522;
+  color: #fff;
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-user-select: none;
@@ -2022,7 +2024,9 @@ textarea.input-lg {
 
 .btn:hover,
 .btn:focus {
-  color: #333333;
+  color: #fff;
+  background-color:#428bca;
+  border: 1px solid #357ebd;
   text-decoration: none;
 }
 
@@ -2098,9 +2102,10 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: #ffffff;
-  background-color: #3276b1;
-  border-color: #285e8e;
+  background-color: #d5572b;
+  border-color: #ab4522;
 }
+
 
 .btn-primary:active,
 .btn-primary.active,

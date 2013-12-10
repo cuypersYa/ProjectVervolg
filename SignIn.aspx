@@ -28,9 +28,9 @@
         <br />
         <asp:Button ID="btnLogin" runat="server" ValidationGroup="normalLogin" OnClick="btnLogin_Click" Text="Log in"  CssClass="btn btn-primary btn-large" />
         
-       <asp:Button ID="btnFacebook" runat="server" Text="Login with FaceBook" OnClick="LoginFacebook" CssClass="btn btn-default" />
-       <asp:Button ID="btnTwitter" runat="server" Text="Login with Twitter" OnClick="LoginTwitter" CssClass="btn btn-default"/>
-       <asp:Button ID="btnSignup" runat="server" OnClick="btnSignup_Click" Text="Sign up" CssClass="btn btn-default" />
+       <asp:Button ID="btnFacebook" runat="server" CssClass="btn btn-primary btn-large" Text="Login with FaceBook" OnClick="LoginFacebook" />
+       <asp:Button ID="btnTwitter" runat="server" CssClass="btn btn-primary btn-large" Text="Login with Twitter" OnClick="LoginTwitter"/>
+       <asp:Button ID="btnSignup" runat="server" CssClass="btn" OnClick="btnSignup_Click" Text="Sign up"/>
         </div>
             </div>
         

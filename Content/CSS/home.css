@@ -31,11 +31,11 @@ form-horizontal {
     width:300px;
 }
 .color {
-    color:#fff;
+    color:#000;
 }
 .createUser {
     background-color:transparent;
-    color:#fff;
+    color:#000;
 }
 
 .textarea {
