@@ -114,6 +114,7 @@ public partial class InfoEvent : System.Web.UI.Page
         List<string> Comments = new List<string>();
         foreach (Comment row in LijstComment)
         {
+            lblComment.Text = "";
             List<User> persoonlijst = BLLUser.selectgebruiker(row.persoonId);
             User persoon = persoonlijst[0];
             string naam = persoon.voornaam + " " + persoon.naam;

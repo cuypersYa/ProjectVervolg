@@ -133,6 +133,8 @@
     <div class="clearfix"></div>
     <div class="floatLeft">
         <h2>Post een comment</h2>
+                <asp:Label ID="lblComment" runat="server" Text="Er zijn nog geen comments geplaatst"></asp:Label>
+
     <asp:TextBox ID="CommentBox" runat="server" CssClass="textarea" ReadOnly="False" Height="100" Width="500" Wrap="True" TextMode="MultiLine"></asp:TextBox>
     <br />
         <asp:RequiredFieldValidator ID="rqfCheck" runat="server" ControlToValidate="CommentBox" ErrorMessage="U kan geen lege comment plaatsen" ValidationGroup="leeg" CssClass="alert-danger"></asp:RequiredFieldValidator>
