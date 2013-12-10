@@ -47,7 +47,7 @@
         
     <br />
    
-        <h2>Aanwezige</h2>
+        <h2>Aanwezige(n)</h2>
         <asp:Repeater ID="rptAanwezig" runat="server" DataSourceID="">
             <HeaderTemplate>
                 <table class="table table-striped">
@@ -110,6 +110,7 @@
     
     <div class="floatLeft">
         <h2>Comments</h2>
+        <asp:Label ID="lblComment" runat="server" Text="Er zijn nog geen comments geplaatst"></asp:Label>
     <asp:Repeater ID="rptComments" runat="server" DataSourceID="">
             <HeaderTemplate>
                 <table class="table table-striped">
@@ -133,7 +134,6 @@
     <div class="clearfix"></div>
     <div class="floatLeft">
         <h2>Post een comment</h2>
-                <asp:Label ID="lblComment" runat="server" Text="Er zijn nog geen comments geplaatst"></asp:Label>
 
     <asp:TextBox ID="CommentBox" runat="server" CssClass="textarea" ReadOnly="False" Height="100" Width="500" Wrap="True" TextMode="MultiLine"></asp:TextBox>
     <br />
