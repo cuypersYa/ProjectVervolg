@@ -76,9 +76,9 @@
     <br />
     <asp:Button ID="btnAfwezig" runat="server" Text="Aanwezig" CssClass="btn" OnClick="btnAfwezig_Click" />
 
-    <asp:Button ID="btnEdit" runat="server" CssClass="btn" OnClick="btnEdit_Click" Text="Edit" />
+    <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-primary btn-large" OnClick="btnEdit_Click" Text="Edit" />
 
-    <asp:Button ID="btnVerwijder" runat="server" CssClass="btn" OnClick="btnVerwijder_Click" Text="Verwijder" Visible="False" />
+    <asp:Button ID="btnVerwijder" runat="server" CssClass="btn btn-primary btn-large" OnClick="btnVerwijder_Click" Text="Verwijder" Visible="False" />
 
     <asp:Button iD="btnHome" Text="Ga terug" runat="server" CssClass="btn" OnClick="btnGaTerug_Click" />
 
