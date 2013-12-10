@@ -108,7 +108,7 @@ public partial class InfoEvent : System.Web.UI.Page
                 //imgQrCode.Visible = false;
             }
         }
-
+        //
         //reacties laden
         List<Comment> LijstComment = BLLComment.selectAll(eventId);
         List<string> Comments = new List<string>();
