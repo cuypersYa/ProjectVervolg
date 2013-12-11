@@ -68,7 +68,6 @@
             </FooterTemplate>
         </asp:Repeater>
         <br />
-    <asp:Label ID="lblFeedback" runat="server" Text=""></asp:Label>
     <br />
 
     <br />
@@ -136,6 +135,7 @@
     <div class="clearfix"></div>
     <div class="floatLeft">
         <h2>Post een comment</h2>
+    <asp:Label ID="lblFeedback" runat="server" Text="" CssClass="alert-danger"></asp:Label>
 
     <asp:TextBox ID="CommentBox" runat="server" CssClass="textarea" ReadOnly="False" Height="100" Width="500" Wrap="True" TextMode="MultiLine"></asp:TextBox>
     <br />
