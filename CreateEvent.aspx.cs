@@ -272,7 +272,7 @@ public partial class CreateEvent : System.Web.UI.Page
                     lblFeedbackNaam.Text = "Naam van het evenement bestaat al";
                     toegestaan = false;
                 }
-                if (clDatum.SelectedDate < DateTime.Now)
+                if (clDatum.SelectedDate <= DateTime.Now)
                 {
                     lblFeedbackDatum.Text = "Datum ligt in het verleden";
                     toegestaan = false;
